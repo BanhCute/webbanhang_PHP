@@ -124,7 +124,7 @@ class ProductController
                     'image' => $imagePath
                 ];
 
-                if ($this->productModel->addProduct($data)) {
+                if ($this->productModel->addProduct($name, $description, $price, $category_id, $imagePath)) {
                     $_SESSION['success_message'] = "Thêm sản phẩm thành công!";
                     header('Location: /T6-Sang/webbanhang/Product/index');
                     exit();
@@ -142,18 +142,23 @@ class ProductController
     public function save()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $name = $_POST['name'];
-            $description = $_POST['description'];
-            $price = $_POST['price'];
-            $category_id = $_POST['category_id'];
+            try {
+                $name = $_POST['name'];
+                $description = $_POST['description'];
+                $price = $_POST['price'];
+                $category_id = $_POST['category_id'];
 
-            // Xử lý ảnh
-            $image = isset($_FILES['image']) ? $_FILES['image'] : null;
+                // Xử lý ảnh
+                $image = isset($_FILES['image']) ? $_FILES['image'] : null;
 
-            if ($this->productModel->addProduct($name, $description, $price, $category_id, $image)) {
-                $_SESSION['success'] = "Thêm sản phẩm thành công";
-            } else {
-                $_SESSION['error'] = "Có lỗi xảy ra khi thêm sản phẩm";
+                // Gọi phương thức addProduct với đầy đủ 5 tham số
+                if ($this->productModel->addProduct($name, $description, $price, $category_id, $image)) {
+                    $_SESSION['success'] = "Thêm sản phẩm thành công";
+                } else {
+                    throw new Exception("Không thể thêm sản phẩm");
+                }
+            } catch (Exception $e) {
+                $_SESSION['error'] = "Lỗi: " . $e->getMessage();
             }
 
             header('Location: ' . ROOT_URL . '/Product');
