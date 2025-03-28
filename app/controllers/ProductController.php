@@ -33,31 +33,11 @@ class ProductController
 
     public function index()
     {
-        $filters = [
-            'category' => $_GET['category'] ?? null,
-            'search' => $_GET['search'] ?? null,
-            'sort' => $_GET['sort'] ?? null
-        ];
+        // Lấy dữ liệu sản phẩm
+        $products = $this->productModel->getProducts();
 
-        // Debug log để kiểm tra filters
-        error_log("Applied filters: " . print_r($filters, true));
-
-        $products = $this->productModel->getAllProducts($filters);
-        $categories = $this->categoryModel->getAllCategories();
-
-        // Debug log để kiểm tra số lượng sản phẩm
-        error_log("Number of products returned: " . count($products));
-
-        require_once __DIR__ . '/../views/shares/header.php';
-
-        // Nếu là admin thì hiện view quản lý, ngược lại hiện view user
-        if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
-            require_once __DIR__ . '/../views/product/list.php';
-        } else {
-            require_once __DIR__ . '/../views/user/product/list.php';
-        }
-
-        require_once __DIR__ . '/../views/shares/footer.php';
+        // Load view
+        require_once ROOT_PATH . '/app/views/user/product/list.php';
     }
 
     public function add()
@@ -762,81 +742,87 @@ class ProductController
 
     public function list()
     {
-        // Cập nhật số lượng giỏ hàng trong session
-        if (isset($_SESSION['user_id'])) {
-            $stmt = $this->db->prepare("
-                SELECT SUM(quantity) as total
-                FROM carts
-                WHERE user_id = ?
-            ");
-            $stmt->execute([$_SESSION['user_id']]);
-            $result = $stmt->fetch();
-            $_SESSION['cart_count'] = $result['total'] ?? 0;
-        }
-
         try {
+            // Khởi tạo các biến lọc từ GET parameters
+            $search = isset($_GET['search']) ? trim($_GET['search']) : '';
+            $category_id = isset($_GET['category_id']) ? (int)$_GET['category_id'] : 0;
+            $sort = isset($_GET['sort']) ? $_GET['sort'] : '';
+            $price_range = isset($_GET['price_range']) ? $_GET['price_range'] : '';
+            $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+            $limit = 8;
+            $offset = ($page - 1) * $limit;
+
+            // Xây dựng câu query cơ bản
+            $sql = "SELECT p.*, c.name as category_name 
+                    FROM products p 
+                    LEFT JOIN categories c ON p.category_id = c.id 
+                    WHERE 1=1";
+            $params = [];
+
+            // Thêm điều kiện tìm kiếm
+            if (!empty($search)) {
+                $sql .= " AND (p.name LIKE :search OR p.description LIKE :search)";
+                $params[':search'] = "%{$search}%";
+            }
+
+            // Thêm điều kiện lọc danh mục
+            if ($category_id > 0) {
+                $sql .= " AND p.category_id = :category_id";
+                $params[':category_id'] = $category_id;
+            }
+
+            // Thêm điều kiện lọc giá
+            if (!empty($price_range)) {
+                list($min, $max) = explode('-', $price_range . '-');
+                if ($max) {
+                    $sql .= " AND p.price BETWEEN :min_price AND :max_price";
+                    $params[':min_price'] = (float)$min;
+                    $params[':max_price'] = (float)$max;
+                } else {
+                    $sql .= " AND p.price >= :min_price";
+                    $params[':min_price'] = (float)$min;
+                }
+            }
+
+            // Thêm sắp xếp
+            $sql .= match ($sort) {
+                'price_asc' => " ORDER BY p.price ASC",
+                'price_desc' => " ORDER BY p.price DESC",
+                'name_asc' => " ORDER BY p.name ASC",
+                'name_desc' => " ORDER BY p.name DESC",
+                default => " ORDER BY p.id DESC"
+            };
+
+            // Đếm tổng số sản phẩm
+            $countSql = "SELECT COUNT(*) FROM (" . $sql . ") as count_table";
+            $stmt = $this->db->prepare($countSql);
+            foreach ($params as $key => $value) {
+                $stmt->bindValue($key, $value);
+            }
+            $stmt->execute();
+            $totalProducts = $stmt->fetchColumn();
+            $totalPages = ceil($totalProducts / $limit);
+
+            // Thêm LIMIT và OFFSET
+            $sql .= " LIMIT :limit OFFSET :offset";
+            $stmt = $this->db->prepare($sql);
+            foreach ($params as $key => $value) {
+                $stmt->bindValue($key, $value);
+            }
+            $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+            $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+            $stmt->execute();
+            $products = $stmt->fetchAll();
+
             // Lấy danh sách danh mục
             $stmt = $this->db->query("SELECT * FROM categories ORDER BY name");
             $categories = $stmt->fetchAll();
 
-            // Xây dựng câu truy vấn cơ bản
-            $query = "
-                SELECT p.*, c.name as category_name 
-                FROM products p 
-                LEFT JOIN categories c ON p.category_id = c.id
-                WHERE 1=1
-            ";
-            $params = [];
-
-            // Thêm điều kiện tìm kiếm
-            if (isset($_GET['search']) && !empty($_GET['search'])) {
-                $query .= " AND p.name LIKE ?";
-                $params[] = "%" . $_GET['search'] . "%";
-            }
-
-            // Thêm điều kiện lọc theo danh mục
-            if (isset($_GET['category']) && !empty($_GET['category'])) {
-                $query .= " AND p.category_id = ?";
-                $params[] = $_GET['category'];
-            }
-
-            // Thêm sắp xếp
-            if (isset($_GET['sort'])) {
-                switch ($_GET['sort']) {
-                    case 'price_asc':
-                        $query .= " ORDER BY p.price ASC";
-                        break;
-                    case 'price_desc':
-                        $query .= " ORDER BY p.price DESC";
-                        break;
-                    default:
-                        $query .= " ORDER BY p.id DESC";
-                }
-            } else {
-                $query .= " ORDER BY p.id DESC";
-            }
-
-            // Thực thi truy vấn
-            $stmt = $this->db->prepare($query);
-            $stmt->execute($params);
-            $products = $stmt->fetchAll();
-
-            // Debug data
-            error_log("Products data: " . print_r($products, true));
-            error_log("Categories data: " . print_r($categories, true));
-
-            // Truyền dữ liệu sang view
-            $data = [
-                'products' => $products,
-                'categories' => $categories
-            ];
-
-            require_once ROOT_PATH . '/app/views/shares/header.php';
-            require_once ROOT_PATH . '/app/views/user/product/list.php';  // Sửa lại đường dẫn này
-            require_once ROOT_PATH . '/app/views/shares/footer.php';
+            // Load view với dữ liệu
+            require_once ROOT_PATH . '/app/views/user/product/list.php';
         } catch (Exception $e) {
-            $_SESSION['error'] = $e->getMessage();
-            header('Location: ' . ROOT_URL . '/Product/list');
+            $_SESSION['error'] = "Có lỗi xảy ra: " . $e->getMessage();
+            header("Location: " . ROOT_URL . "/Product/list");
             exit;
         }
     }
@@ -944,6 +930,49 @@ class ProductController
                 'message' => $e->getMessage()
             ]);
             exit;
+        }
+    }
+
+    private function buildPageUrl($page)
+    {
+        $params = $_GET;
+        $params['page'] = $page;
+        return ROOT_URL . '/Product/list?' . http_build_query($params);
+    }
+
+    public function clearCart()
+    {
+        try {
+            // Kiểm tra đăng nhập
+            if (!isset($_SESSION['user_id'])) {
+                echo json_encode([
+                    'success' => false,
+                    'message' => 'Vui lòng đăng nhập để thực hiện chức năng này'
+                ]);
+                return;
+            }
+
+            $user_id = $_SESSION['user_id'];
+
+            // Xóa tất cả sản phẩm trong giỏ hàng từ bảng carts
+            $sql = "DELETE FROM carts WHERE user_id = :user_id";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+            $stmt->execute();
+
+            // Cập nhật lại số lượng trong session
+            $_SESSION['cart_count'] = 0;
+
+            echo json_encode([
+                'success' => true,
+                'message' => 'Đã xóa tất cả sản phẩm khỏi giỏ hàng',
+                'cartCount' => 0
+            ]);
+        } catch (Exception $e) {
+            echo json_encode([
+                'success' => false,
+                'message' => 'Có lỗi xảy ra: ' . $e->getMessage()
+            ]);
         }
     }
 }

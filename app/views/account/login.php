@@ -1,52 +1,58 @@
-<div class="container">
-    <div class="form-container">
-        <div class="card">
-            <div class="card-body p-4">
-                <h1 class="text-center mb-4">Đăng nhập</h1>
+<?php
+$pageTitle = 'Đăng nhập';
+require_once ROOT_PATH . '/app/views/shares/header.php';
+?>
 
-                <?php if ($error): ?>
-                    <div class="alert alert-danger">
-                        <?php echo htmlspecialchars($error); ?>
-                    </div>
-                <?php endif; ?>
-
-                <form method="POST" action="/T6-Sang/webbanhang/Account/login" class="needs-validation" novalidate>
-                    <div class="mb-3">
-                        <label for="username" class="form-label">Tên đăng nhập</label>
-                        <input type="text" class="form-control" id="username" name="username"
-                            value="<?php echo isset($_POST['username']) ? htmlspecialchars($_POST['username']) : ''; ?>"
-                            required>
-                        <div class="invalid-feedback">
-                            Vui lòng nhập tên đăng nhập
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Đăng nhập</h4>
+                </div>
+                <div class="card-body">
+                    <?php if (isset($error) && !empty($error)): ?>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <i class="fas fa-exclamation-circle me-2"></i><?= $error ?>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
-                    </div>
+                    <?php endif; ?>
 
-                    <div class="mb-4">
-                        <label for="password" class="form-label">Mật khẩu</label>
-                        <div class="input-group">
-                            <input type="password" class="form-control" id="password" name="password" required>
-                            <button type="button" class="btn btn-outline-secondary" onclick="togglePassword('password')">
-                                <i class="bi bi-eye"></i>
+                    <?php if (isset($_SESSION['error'])): ?>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <i class="fas fa-exclamation-circle me-2"></i><?= $_SESSION['error'] ?>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        <?php unset($_SESSION['error']); ?>
+                    <?php endif; ?>
+
+                    <form method="POST" action="<?= ROOT_URL ?>/Account/login">
+                        <div class="mb-3">
+                            <label class="form-label">Tên đăng nhập</label>
+                            <input type="text" class="form-control" name="username" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Mật khẩu</label>
+                            <input type="password" class="form-control" name="password" required>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-sign-in-alt me-2"></i>Đăng nhập
                             </button>
                         </div>
-                        <div class="invalid-feedback">
-                            Vui lòng nhập mật khẩu
-                        </div>
-                    </div>
-
-                    <div class="d-grid gap-2">
-                        <button type="submit" class="btn btn-primary btn-lg btn-action">
-                            <i class="bi bi-box-arrow-in-right"></i> Đăng nhập
-                        </button>
-                        <a href="/T6-Sang/webbanhang/Account/register" class="btn btn-outline-secondary btn-action">
-                            <i class="bi bi-person-plus"></i> Chưa có tài khoản? Đăng ký
-                        </a>
-                    </div>
-                </form>
+                    </form>
+                </div>
+                <div class="card-footer text-center">
+                    <p class="mb-0">Chưa có tài khoản?
+                        <a href="<?= ROOT_URL ?>/Account/register" class="text-primary">Đăng ký ngay</a>
+                    </p>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+<?php require_once ROOT_PATH . '/app/views/shares/footer.php'; ?>
 
 <style>
     .form-container {

@@ -29,154 +29,181 @@ if (isset($_SESSION['success'])): ?>
 
 
 <div class="container mt-4">
-    <div class="row">
-        <!-- Phần lọc sản phẩm -->
-        <div class="col-md-3">
-            <div class="card mb-4">
-                <div class="card-header bg-white">
-                    <h5 class="mb-0">
-                        <i class="fas fa-filter text-primary"></i> Lọc sản phẩm
-                    </h5>
+    <!-- Form tìm kiếm và lọc -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <form method="GET" action="<?= ROOT_URL ?>/Product/list" class="row g-2">
+                <!-- Ô tìm kiếm -->
+                <div class="col-lg-3">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="search"
+                            placeholder="Tìm kiếm sản phẩm..."
+                            value="<?= isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '' ?>">
+                    </div>
                 </div>
-                <div class="card-body">
-                    <form action="/T6-Sang/webbanhang/Product" method="GET">
-                        <!-- Tìm kiếm -->
-                        <div class="mb-3">
-                            <label class="form-label">Tên sản phẩm</label>
-                            <input type="text" name="search" class="form-control"
-                                value="<?= isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '' ?>"
-                                placeholder="Nhập tên sản phẩm...">
-                        </div>
 
-                        <!-- Danh mục -->
-                        <div class="mb-3">
-                            <label class="form-label">Danh mục</label>
-                            <select name="category" class="form-select">
-                                <option value="">Tất cả danh mục</option>
-                                <?php foreach ($categories as $category): ?>
-                                    <option value="<?= $category['id'] ?>"
-                                        <?= (isset($_GET['category']) && $_GET['category'] == $category['id']) ? 'selected' : '' ?>>
-                                        <?= htmlspecialchars($category['name']) ?>
-                                    </option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
+                <!-- Lọc danh mục -->
+                <div class="col-lg-3">
+                    <select class="form-select" name="category_id">
+                        <option value="">Tất cả danh mục</option>
+                        <?php foreach ($categories as $category): ?>
+                            <option value="<?= $category['id'] ?>"
+                                <?= (isset($_GET['category_id']) && $_GET['category_id'] == $category['id']) ? 'selected' : '' ?>>
+                                <?= htmlspecialchars($category['name']) ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
 
-                        <!-- Sắp xếp -->
-                        <div class="mb-3">
-                            <label class="form-label">Sắp xếp theo</label>
-                            <select name="sort" class="form-select" onchange="this.form.submit()">
-                                <option value="">Mặc định</option>
-                                <option value="price_asc" <?= (isset($_GET['sort']) && $_GET['sort'] === 'price_asc') ? 'selected' : '' ?>>
-                                    Giá: Thấp đến cao
-                                </option>
-                                <option value="price_desc" <?= (isset($_GET['sort']) && $_GET['sort'] === 'price_desc') ? 'selected' : '' ?>>
-                                    Giá: Cao đến thấp
-                                </option>
-                            </select>
-                        </div>
+                <!-- Lọc giá -->
+                <div class="col-lg-2">
+                    <select class="form-select" name="price_range">
+                        <option value="">Tất cả giá</option>
+                        <option value="0-500000" <?= (isset($_GET['price_range']) && $_GET['price_range'] == '0-500000') ? 'selected' : '' ?>>
+                            Dưới 500.000đ
+                        </option>
+                        <option value="500000-1000000" <?= (isset($_GET['price_range']) && $_GET['price_range'] == '500000-1000000') ? 'selected' : '' ?>>
+                            500.000đ - 1.000.000đ
+                        </option>
+                        <option value="1000000-5000000" <?= (isset($_GET['price_range']) && $_GET['price_range'] == '1000000-5000000') ? 'selected' : '' ?>>
+                            1.000.000đ - 5.000.000đ
+                        </option>
+                        <option value="5000000" <?= (isset($_GET['price_range']) && $_GET['price_range'] == '5000000') ? 'selected' : '' ?>>
+                            Trên 5.000.000đ
+                        </option>
+                    </select>
+                </div>
 
-                        <button type="submit" class="btn btn-primary w-100">
+                <!-- Sắp xếp -->
+                <div class="col-lg-2">
+                    <select class="form-select" name="sort">
+                        <option value="">Sắp xếp mặc định</option>
+                        <option value="price_asc" <?= (isset($_GET['sort']) && $_GET['sort'] == 'price_asc') ? 'selected' : '' ?>>
+                            Giá tăng dần
+                        </option>
+                        <option value="price_desc" <?= (isset($_GET['sort']) && $_GET['sort'] == 'price_desc') ? 'selected' : '' ?>>
+                            Giá giảm dần
+                        </option>
+                        <option value="name_asc" <?= (isset($_GET['sort']) && $_GET['sort'] == 'name_asc') ? 'selected' : '' ?>>
+                            Tên A-Z
+                        </option>
+                        <option value="name_desc" <?= (isset($_GET['sort']) && $_GET['sort'] == 'name_desc') ? 'selected' : '' ?>>
+                            Tên Z-A
+                        </option>
+                    </select>
+                </div>
+
+                <!-- Nút tìm kiếm và reset -->
+                <div class="col-lg-2">
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-primary">
                             <i class="fas fa-search"></i> Tìm kiếm
                         </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <!-- Phần hiển thị sản phẩm -->
-        <div class="col-md-9">
-            <!-- Thông báo -->
-            <?php if (isset($_SESSION['success'])): ?>
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <?= $_SESSION['success'] ?>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                </div>
-                <?php unset($_SESSION['success']); ?>
-            <?php endif; ?>
-
-            <?php if (isset($_SESSION['error'])): ?>
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <?= $_SESSION['error'] ?>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                </div>
-                <?php unset($_SESSION['error']); ?>
-            <?php endif; ?>
-
-            <div class="row row-cols-1 row-cols-md-3 g-4">
-                <?php foreach ($products as $product): ?>
-                    <div class="col">
-                        <div class="card h-100 product-card">
-                            <!-- Ảnh sản phẩm -->
-                            <div class="card-img-container">
-                                <img src="/T6-Sang/webbanhang/public/uploads/products/<?= $product['image'] ?>"
-                                    class="card-img-top"
-                                    alt="<?= $product['name'] ?>">
-                            </div>
-
-                            <!-- Thông tin sản phẩm -->
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <a href="<?= ROOT_URL ?>/Product/detail/<?= $product['id'] ?>"
-                                        class="text-decoration-none text-dark">
-                                        <?= $product['name'] ?>
-                                    </a>
-                                </h5>
-                                <p class="card-text text-truncate"><?= $product['description'] ?></p>
-
-                                <!-- Giá và badge category -->
-                                <div class="price-badge-container d-flex justify-content-between align-items-center">
-                                    <span class="text-danger fw-bold">
-                                        <?= number_format($product['price'], 0, ',', '.') ?> đ
-                                    </span>
-                                    <span class="badge bg-primary">
-                                        <?= $product['category_name'] ?>
-                                    </span>
-                                </div>
-                            </div>
-
-                            <!-- Phần thao tác -->
-                            <div class="card-footer bg-white">
-                                <div class="d-grid gap-2">
-                                    <!-- Nút xem chi tiết -->
-                                    <a href="<?= ROOT_URL ?>/Product/detail/<?= $product['id'] ?>"
-                                        class="btn btn-outline-primary">
-                                        <i class="fas fa-eye"></i> Chi tiết
-                                    </a>
-
-                                    <?php if (isset($_SESSION['user_id'])): ?>
-                                        <!-- Nút thêm vào giỏ và mua ngay khi đã đăng nhập -->
-                                        <div class="btn-group w-100" role="group">
-                                            <button type="button" class="btn btn-primary add-to-cart"
-                                                data-product-id="<?= $product['id'] ?>"
-                                                data-product-name="<?= htmlspecialchars($product['name']) ?>"
-                                                data-product-image="<?= $product['image'] ?>">
-                                                <i class="fas fa-shopping-cart"></i> Thêm vào giỏ
-                                            </button>
-                                            <button type="button" class="btn btn-danger buy-now"
-                                                data-product-id="<?= $product['id'] ?>">
-                                                <i class="fas fa-bolt"></i> Mua ngay
-                                            </button>
-                                        </div>
-                                    <?php else: ?>
-                                        <!-- Nút yêu cầu đăng nhập khi chưa đăng nhập -->
-                                        <div class="btn-group w-100" role="group">
-                                            <button type="button" class="btn btn-primary" onclick="requireLogin()">
-                                                <i class="fas fa-shopping-cart"></i> Thêm vào giỏ
-                                            </button>
-                                            <button type="button" class="btn btn-danger" onclick="requireLogin()">
-                                                <i class="fas fa-bolt"></i> Mua ngay
-                                            </button>
-                                        </div>
-                                    <?php endif; ?>
-                                </div>
-                            </div>
-                        </div>
+                        <a href="<?= ROOT_URL ?>/Product/list" class="btn btn-secondary">
+                            <i class="fas fa-sync-alt"></i>
+                        </a>
                     </div>
-                <?php endforeach; ?>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
+
+    <!-- Hiển thị sản phẩm -->
+    <div class="row">
+        <?php if (empty($products)): ?>
+            <div class="col-12 text-center py-5">
+                <h4 class="text-muted">Không tìm thấy sản phẩm nào</h4>
+            </div>
+        <?php else: ?>
+            <?php foreach ($products as $product): ?>
+                <div class="col-md-3 mb-4">
+                    <div class="card h-100">
+                        <img src="<?= ROOT_URL ?>/public/uploads/products/<?= $product['image'] ?: 'no-image.png' ?>"
+                            class="card-img-top" alt="<?= htmlspecialchars($product['name']) ?>"
+                            style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title text-truncate">
+                                <?= htmlspecialchars($product['name']) ?>
+                            </h5>
+                            <p class="card-text text-primary fw-bold">
+                                <?= number_format($product['price'], 0, ',', '.') ?>đ
+                            </p>
+                            <p class="card-text">
+                                <small class="text-muted">
+                                    <i class="fas fa-tag me-1"></i><?= htmlspecialchars($product['category_name']) ?>
+                                </small>
+                            </p>
+                        </div>
+                        <div class="card-footer bg-white border-top-0">
+                            <div class="d-flex gap-2">
+                                <?php if (isset($_SESSION['user_id'])): ?>
+                                    <!-- Người dùng đã đăng nhập -->
+                                    <button type="button"
+                                        class="btn btn-outline-primary flex-grow-1 add-to-cart"
+                                        data-product-id="<?= $product['id'] ?>"
+                                        data-product-name="<?= htmlspecialchars($product['name']) ?>"
+                                        data-product-image="<?= $product['image'] ?: 'no-image.png' ?>">
+                                        <i class="fas fa-cart-plus me-1"></i> Thêm vào giỏ
+                                    </button>
+                                    <button type="button"
+                                        class="btn btn-primary flex-grow-1 buy-now"
+                                        data-product-id="<?= $product['id'] ?>">
+                                        <i class="fas fa-bolt me-1"></i> Mua ngay
+                                    </button>
+                                <?php else: ?>
+                                    <!-- Người dùng chưa đăng nhập -->
+                                    <button type="button"
+                                        class="btn btn-outline-primary flex-grow-1"
+                                        onclick="requireLogin()">
+                                        <i class="fas fa-cart-plus me-1"></i> Thêm vào giỏ
+                                    </button>
+                                    <button type="button"
+                                        class="btn btn-primary flex-grow-1"
+                                        onclick="requireLogin()">
+                                        <i class="fas fa-bolt me-1"></i> Mua ngay
+                                    </button>
+                                <?php endif; ?>
+                            </div>
+                            <a href="<?= ROOT_URL ?>/Product/detail/<?= $product['id'] ?>"
+                                class="btn btn-outline-secondary w-100 mt-2">
+                                <i class="fas fa-info-circle me-1"></i> Chi tiết
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        <?php endif; ?>
+    </div>
+
+    <!-- Phân trang -->
+    <?php if ($totalPages > 1): ?>
+        <nav class="mt-4">
+            <ul class="pagination justify-content-center">
+                <!-- Nút Previous -->
+                <li class="page-item <?= ($page <= 1) ? 'disabled' : '' ?>">
+                    <a class="page-link" href="<?= $this->buildPageUrl($page - 1) ?>">
+                        <i class="fas fa-chevron-left"></i>
+                    </a>
+                </li>
+
+                <!-- Các trang -->
+                <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                    <li class="page-item <?= ($page == $i) ? 'active' : '' ?>">
+                        <a class="page-link" href="<?= $this->buildPageUrl($i) ?>">
+                            <?= $i ?>
+                        </a>
+                    </li>
+                <?php endfor; ?>
+
+                <!-- Nút Next -->
+                <li class="page-item <?= ($page >= $totalPages) ? 'disabled' : '' ?>">
+                    <a class="page-link" href="<?= $this->buildPageUrl($page + 1) ?>">
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    <?php endif; ?>
 </div>
 
 <script>
@@ -260,6 +287,14 @@ if (isset($_SESSION['success'])): ?>
                         console.error('Error:', error);
                         showToast('error', 'Không thể thực hiện mua ngay');
                     });
+            });
+        });
+
+        // Tự động submit form khi thay đổi select
+        const selects = document.querySelectorAll('select[name="category_id"], select[name="price_range"], select[name="sort"]');
+        selects.forEach(select => {
+            select.addEventListener('change', function() {
+                this.closest('form').submit();
             });
         });
     });

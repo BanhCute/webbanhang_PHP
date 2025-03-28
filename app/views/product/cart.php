@@ -30,6 +30,13 @@ $currentPage = 'cart';
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h5 class="card-title mb-0">Danh sách sản phẩm</h5>
+                            <button type="button" class="btn btn-outline-danger btn-sm clear-cart">
+                                <i class="fas fa-trash-alt me-2"></i>Xóa tất cả
+                            </button>
+                        </div>
+                        <hr>
                         <?php foreach ($cartItems as $index => $item): ?>
                             <div class="row mb-4 align-items-center cart-item" data-product-id="<?= $item['product_id'] ?>">
                                 <div class="col-md-2">
@@ -223,6 +230,60 @@ $currentPage = 'cart';
                 });
             });
         });
+
+        // Xử lý xóa tất cả sản phẩm
+        const clearCartBtn = document.querySelector('.clear-cart');
+        if (clearCartBtn) {
+            clearCartBtn.addEventListener('click', function() {
+                Swal.fire({
+                    title: 'Xác nhận xóa',
+                    text: 'Bạn có chắc muốn xóa tất cả sản phẩm khỏi giỏ hàng?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Xóa tất cả',
+                    cancelButtonText: 'Hủy',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        fetch(`${ROOT_URL}/Product/clearCart`, {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/x-www-form-urlencoded',
+                                }
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.success) {
+                                    // Cập nhật số lượng trong header về 0
+                                    const cartCountElement = document.querySelector('.cart-count');
+                                    if (cartCountElement) {
+                                        cartCountElement.textContent = '0';
+                                        cartCountElement.style.display = 'none';
+                                    }
+
+                                    // Hiển thị thông báo thành công và reload trang
+                                    Swal.fire({
+                                        title: 'Thành công!',
+                                        text: 'Đã xóa tất cả sản phẩm khỏi giỏ hàng',
+                                        icon: 'success',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    }).then(() => {
+                                        // Đảm bảo trang được reload sau khi hiển thị thông báo
+                                        window.location.href = `${ROOT_URL}/Product/cart`;
+                                    });
+                                } else {
+                                    Swal.fire('Lỗi', data.message, 'error');
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                                Swal.fire('Lỗi', 'Không thể xóa giỏ hàng', 'error');
+                            });
+                    }
+                });
+            });
+        }
 
         function updateCartItem(productId, quantity) {
             fetch(`${ROOT_URL}/Product/updateCart`, {

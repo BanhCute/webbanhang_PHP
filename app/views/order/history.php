@@ -24,6 +24,7 @@
                                 <th>Mã đơn hàng</th>
                                 <th>Ngày đặt</th>
                                 <th class="text-center">Số sản phẩm</th>
+
                                 <th class="text-end">Tổng tiền</th>
                                 <th class="text-center">Trạng thái</th>
                             </tr>
@@ -38,6 +39,7 @@
                                         <i class="far fa-calendar-alt text-muted me-1"></i>
                                         <?= date('d/m/Y', strtotime($order['created_at'])) ?>
                                     </td>
+                                    
                                     <td class="text-center">
                                         <span class="badge bg-secondary">
                                             <i class="fas fa-box me-1"></i>

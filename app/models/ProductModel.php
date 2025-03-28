@@ -8,13 +8,31 @@ class ProductModel
         $this->conn = $db;
     }
 
-    public function getProducts()
+    public function getProducts($limit = null, $offset = null)
     {
         try {
             $query = "SELECT p.*, c.name as category_name 
                      FROM products p 
                      LEFT JOIN categories c ON p.category_id = c.id";
+
+            // Thêm LIMIT và OFFSET nếu được cung cấp
+            if ($limit !== null) {
+                $query .= " LIMIT :limit";
+                if ($offset !== null) {
+                    $query .= " OFFSET :offset";
+                }
+            }
+
             $stmt = $this->conn->prepare($query);
+
+            // Bind các tham số nếu có
+            if ($limit !== null) {
+                $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+                if ($offset !== null) {
+                    $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+                }
+            }
+
             $stmt->execute();
             return $stmt->fetchAll();
         } catch (PDOException $e) {
@@ -223,7 +241,6 @@ class ProductModel
                         break;
                 }
             } else {
-                // Mặc định sắp xếp theo ID giảm dần
                 $sql .= " ORDER BY p.id DESC";
             }
 
@@ -234,5 +251,11 @@ class ProductModel
             error_log("Error in getAllProducts: " . $e->getMessage());
             return [];
         }
+    }
+
+    public function getTotalProducts()
+    {
+        $stmt = $this->conn->query("SELECT COUNT(*) FROM products");
+        return $stmt->fetchColumn();
     }
 }

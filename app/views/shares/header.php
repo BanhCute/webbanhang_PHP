@@ -247,27 +247,22 @@ require_once __DIR__ . '/../../helpers/SessionHelper.php';
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/T6-Sang/webbanhang/Product/index">
+                        <a class="nav-link" href="/T6-Sang/webbanhang/Product/list">
                             <i class="bi bi-shop"></i> Sản phẩm
                         </a>
                     </li>
+
                     <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                                <i class="bi bi-gear"></i> Quản lý
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/T6-Sang/webbanhang/Product/add">
-                                        <i class="bi bi-plus-circle"></i> Thêm sản phẩm
-                                    </a></li>
-                                <li><a class="dropdown-item" href="/T6-Sang/webbanhang/Category/list">
-                                        <i class="bi bi-tags"></i> Quản lý danh mục
-                                    </a></li>
-                            </ul>
-                        </li>
+
+
+                        <a class="nav-link" href="/T6-Sang/webbanhang/admin/product">
+                            <i class="fas fa-cog"></i>Trang quản lý
+                        </a>
+
+
                     <?php endif; ?>
                 </ul>
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <ul ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <?php if (isset($_SESSION['user_id'])): ?>
                         <?php
                         // Lấy số lượng giỏ hàng từ database

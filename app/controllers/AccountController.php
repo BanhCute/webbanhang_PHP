@@ -73,71 +73,59 @@ class AccountController
     // Hiển thị form đăng nhập
     public function login()
     {
-        $error = null;
-
+        // Nếu đã đăng nhập thì chuyển về trang chủ
         if (isset($_SESSION['user_id'])) {
-            // Nếu đã đăng nhập, chuyển hướng theo role
-            if ($_SESSION['role'] === 'admin') {
-                header('Location: /T6-Sang/webbanhang/Product/list');
-            } else {
-                header('Location: /T6-Sang/webbanhang/Cart');
-            }
+            header('Location: ' . ROOT_URL);
             exit;
         }
 
+        // Kiểm tra nếu có thông báo lỗi từ AdminController
+        $error = isset($_SESSION['error']) ? $_SESSION['error'] : '';
+        unset($_SESSION['error']); // Xóa thông báo lỗi sau khi lấy
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             try {
-                $username = $_POST['username'] ?? '';
-                $password = $_POST['password'] ?? '';
+                $username = $_POST['username'];
+                $password = $_POST['password'];
 
                 if (empty($username) || empty($password)) {
                     throw new Exception('Vui lòng nhập đầy đủ thông tin');
                 }
 
-                // Kiểm tra tài khoản tồn tại - chỉ lấy các trường cần thiết
-                $stmt = $this->db->prepare("SELECT id, username, password, role, created_at FROM account WHERE username = ?");
+                $stmt = $this->db->prepare("SELECT * FROM account WHERE username = ?");
                 $stmt->execute([$username]);
                 $user = $stmt->fetch();
 
-                // Kiểm tra mật khẩu với password_verify
                 if ($user && password_verify($password, $user['password'])) {
-                    // Lưu thông tin vào session
                     $_SESSION['user_id'] = $user['id'];
                     $_SESSION['username'] = $user['username'];
-                    $_SESSION['role'] = $user['role'] ?? 'user'; // Mặc định là user nếu role null
+                    $_SESSION['role'] = $user['role'];
 
-                    try {
-                        // Lấy số lượng sản phẩm trong giỏ hàng từ bảng carts
-                        $stmt = $this->db->prepare("SELECT SUM(quantity) as cart_count FROM carts WHERE user_id = ?");
-                        $stmt->execute([$user['id']]);
-                        $result = $stmt->fetch();
-                        $_SESSION['cart_count'] = $result['cart_count'] ?? 0;
-                    } catch (PDOException $e) {
-                        $_SESSION['cart_count'] = 0;
+                    // Lấy số lượng sản phẩm trong giỏ hàng
+                    $stmt = $this->db->prepare("SELECT SUM(quantity) as total FROM carts WHERE user_id = ?");
+                    $stmt->execute([$user['id']]);
+                    $result = $stmt->fetch();
+                    $_SESSION['cart_count'] = $result['total'] ?? 0;
+
+                    // Nếu là admin và đang cố truy cập trang admin trước đó
+                    if ($user['role'] === 'admin' && isset($_SESSION['attempted_admin_access'])) {
+                        unset($_SESSION['attempted_admin_access']);
+                        header('Location: ' . ROOT_URL . '/admin/product');
+                        exit;
                     }
 
-                    // Chuyển hướng dựa vào role
-                    if (strtolower($user['role']) === 'admin') {
-                        header('Location: /T6-Sang/webbanhang/Product/list');
-                        exit();
-                    } else {
-                        header('Location: /T6-Sang/webbanhang/Cart');
-                        exit();
-                    }
+                    header('Location: ' . ROOT_URL);
+                    exit;
                 } else {
                     throw new Exception('Tên đăng nhập hoặc mật khẩu không đúng');
                 }
             } catch (Exception $e) {
                 $error = $e->getMessage();
-                // Log lỗi để debug
-                error_log("Login error: " . $e->getMessage());
             }
         }
 
-        // Load view với thông báo lỗi
-        include 'app/views/shares/header.php';
-        include 'app/views/account/login.php';
-        include 'app/views/shares/footer.php';
+        // Load view
+        require_once ROOT_PATH . '/app/views/account/login.php';
     }
 
     // Đăng xuất
