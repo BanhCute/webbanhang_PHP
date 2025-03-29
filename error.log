@@ -46969,3 +46969,2155 @@ Stack trace:
 [28-Mar-2025 03:25:12 UTC] URL: admin/order
 [28-Mar-2025 03:25:12 UTC] Controller: admin
 [28-Mar-2025 03:25:12 UTC] Action: order
+[28-Mar-2025 03:33:11 UTC] URL: Account/login
+[28-Mar-2025 03:33:11 UTC] Controller: Account
+[28-Mar-2025 03:33:11 UTC] Action: login
+[28-Mar-2025 03:33:11 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 03:33:42 UTC] URL: Account/login
+[28-Mar-2025 03:33:42 UTC] Controller: Account
+[28-Mar-2025 03:33:42 UTC] Action: login
+[28-Mar-2025 03:33:42 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 03:33:43 UTC] URL: Account/forgotPassword
+[28-Mar-2025 03:33:43 UTC] Controller: Account
+[28-Mar-2025 03:33:43 UTC] Action: forgotPassword
+[28-Mar-2025 03:33:43 UTC] URL: Product/list
+[28-Mar-2025 03:33:43 UTC] Controller: Product
+[28-Mar-2025 03:33:43 UTC] Action: list
+[28-Mar-2025 03:33:43 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 03:33:43 UTC] Current session data in list view: Array
+(
+)
+
+[28-Mar-2025 03:33:43 UTC] URL: public/uploads/products/no-image.png
+[28-Mar-2025 03:33:43 UTC] Controller: public
+[28-Mar-2025 03:33:43 UTC] Action: uploads
+[28-Mar-2025 03:33:43 UTC] URL: Product/list
+[28-Mar-2025 03:33:43 UTC] Controller: Product
+[28-Mar-2025 03:33:43 UTC] Action: list
+[28-Mar-2025 03:33:43 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 03:33:43 UTC] Current session data in list view: Array
+(
+)
+
+[28-Mar-2025 03:37:48 UTC] URL: Account/login
+[28-Mar-2025 03:37:48 UTC] Controller: Account
+[28-Mar-2025 03:37:48 UTC] Action: login
+[28-Mar-2025 03:37:48 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 03:37:50 UTC] URL: Product/list
+[28-Mar-2025 03:37:50 UTC] Controller: Product
+[28-Mar-2025 03:37:50 UTC] Action: list
+[28-Mar-2025 03:37:50 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 03:37:50 UTC] Current session data in list view: Array
+(
+)
+
+[28-Mar-2025 03:37:50 UTC] URL: public/uploads/products/no-image.png
+[28-Mar-2025 03:37:50 UTC] Controller: public
+[28-Mar-2025 03:37:50 UTC] Action: uploads
+[28-Mar-2025 03:37:50 UTC] URL: Product/list
+[28-Mar-2025 03:37:50 UTC] Controller: Product
+[28-Mar-2025 03:37:50 UTC] Action: list
+[28-Mar-2025 03:37:50 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 03:37:50 UTC] Current session data in list view: Array
+(
+)
+
+[28-Mar-2025 03:37:51 UTC] URL: Account/login
+[28-Mar-2025 03:37:51 UTC] Controller: Account
+[28-Mar-2025 03:37:51 UTC] Action: login
+[28-Mar-2025 03:37:51 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 03:37:54 UTC] URL: Account/forgotPassword
+[28-Mar-2025 03:37:54 UTC] Controller: Account
+[28-Mar-2025 03:37:54 UTC] Action: forgotPassword
+[28-Mar-2025 03:37:54 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 03:37:57 UTC] URL: Account/sendResetCode
+[28-Mar-2025 03:37:57 UTC] Controller: Account
+[28-Mar-2025 03:37:57 UTC] Action: sendResetCode
+[28-Mar-2025 03:38:00 UTC] URL: Account/sendResetCode
+[28-Mar-2025 03:38:00 UTC] Controller: Account
+[28-Mar-2025 03:38:00 UTC] Action: sendResetCode
+[28-Mar-2025 03:38:23 UTC] URL: Account/resetPassword
+[28-Mar-2025 03:38:23 UTC] Controller: Account
+[28-Mar-2025 03:38:23 UTC] Action: resetPassword
+[28-Mar-2025 03:38:26 UTC] URL: Account/resetPassword
+[28-Mar-2025 03:38:26 UTC] Controller: Account
+[28-Mar-2025 03:38:26 UTC] Action: resetPassword
+[28-Mar-2025 03:38:28 UTC] URL: Account/login
+[28-Mar-2025 03:38:28 UTC] Controller: Account
+[28-Mar-2025 03:38:28 UTC] Action: login
+[28-Mar-2025 03:38:28 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 03:38:31 UTC] URL: Account/login
+[28-Mar-2025 03:38:31 UTC] Controller: Account
+[28-Mar-2025 03:38:31 UTC] Action: login
+[28-Mar-2025 03:38:32 UTC] URL: 
+[28-Mar-2025 03:38:32 UTC] Controller: 
+[28-Mar-2025 03:38:32 UTC] Action: list
+[28-Mar-2025 03:38:32 UTC] Session in header: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[28-Mar-2025 03:38:32 UTC] Current session data in list view: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[28-Mar-2025 03:38:32 UTC] URL: public/uploads/products/no-image.png
+[28-Mar-2025 03:38:32 UTC] Controller: public
+[28-Mar-2025 03:38:32 UTC] Action: uploads
+[28-Mar-2025 03:38:32 UTC] URL: Product/list
+[28-Mar-2025 03:38:32 UTC] Controller: Product
+[28-Mar-2025 03:38:32 UTC] Action: list
+[28-Mar-2025 03:38:32 UTC] Session in header: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[28-Mar-2025 03:38:32 UTC] Current session data in list view: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[28-Mar-2025 03:38:42 UTC] URL: Account/logout
+[28-Mar-2025 03:38:42 UTC] Controller: Account
+[28-Mar-2025 03:38:42 UTC] Action: logout
+[28-Mar-2025 03:38:42 UTC] URL: Account/login
+[28-Mar-2025 03:38:42 UTC] Controller: Account
+[28-Mar-2025 03:38:42 UTC] Action: login
+[28-Mar-2025 03:38:42 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 03:38:46 UTC] URL: Account/register
+[28-Mar-2025 03:38:46 UTC] Controller: Account
+[28-Mar-2025 03:38:46 UTC] Action: register
+[28-Mar-2025 03:38:46 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 03:38:56 UTC] URL: Account/register
+[28-Mar-2025 03:38:56 UTC] Controller: Account
+[28-Mar-2025 03:38:56 UTC] Action: register
+[28-Mar-2025 03:38:56 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 03:39:33 UTC] URL: Account/register
+[28-Mar-2025 03:39:33 UTC] Controller: Account
+[28-Mar-2025 03:39:33 UTC] Action: register
+[28-Mar-2025 03:39:33 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 03:39:35 UTC] URL: Account/register
+[28-Mar-2025 03:39:35 UTC] Controller: Account
+[28-Mar-2025 03:39:35 UTC] Action: register
+[28-Mar-2025 03:39:35 UTC] Session in header: Array
+(
+    [error] => Vui lòng nhập mật khẩu
+)
+
+[28-Mar-2025 03:39:37 UTC] URL: Account/register
+[28-Mar-2025 03:39:37 UTC] Controller: Account
+[28-Mar-2025 03:39:37 UTC] Action: register
+[28-Mar-2025 03:39:37 UTC] Session in header: Array
+(
+    [error] => Mật khẩu xác nhận không khớp
+)
+
+[28-Mar-2025 03:39:54 UTC] URL: Account/login
+[28-Mar-2025 03:39:54 UTC] Controller: Account
+[28-Mar-2025 03:39:54 UTC] Action: login
+[28-Mar-2025 03:39:54 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 03:39:57 UTC] URL: Account/register
+[28-Mar-2025 03:39:57 UTC] Controller: Account
+[28-Mar-2025 03:39:57 UTC] Action: register
+[28-Mar-2025 03:39:57 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 03:40:14 UTC] URL: Account/register
+[28-Mar-2025 03:40:14 UTC] Controller: Account
+[28-Mar-2025 03:40:14 UTC] Action: register
+[28-Mar-2025 03:40:14 UTC] Session in header: Array
+(
+    [error] => Vui lòng nhập tên đăng nhập
+)
+
+[28-Mar-2025 03:40:22 UTC] URL: Account/register
+[28-Mar-2025 03:40:22 UTC] Controller: Account
+[28-Mar-2025 03:40:22 UTC] Action: register
+[28-Mar-2025 03:40:22 UTC] Session in header: Array
+(
+    [error] => Vui lòng nhập tên đăng nhập
+)
+
+[28-Mar-2025 03:40:25 UTC] URL: Account/register
+[28-Mar-2025 03:40:25 UTC] Controller: Account
+[28-Mar-2025 03:40:25 UTC] Action: register
+[28-Mar-2025 03:40:25 UTC] Session in header: Array
+(
+    [error] => Vui lòng nhập tên đăng nhập
+)
+
+[28-Mar-2025 03:40:44 UTC] URL: Account/register
+[28-Mar-2025 03:40:44 UTC] Controller: Account
+[28-Mar-2025 03:40:44 UTC] Action: register
+[28-Mar-2025 03:40:44 UTC] Session in header: Array
+(
+    [error] => Vui lòng nhập tên đăng nhập
+)
+
+[28-Mar-2025 03:41:20 UTC] URL: Account/register
+[28-Mar-2025 03:41:20 UTC] Controller: Account
+[28-Mar-2025 03:41:20 UTC] Action: register
+[28-Mar-2025 03:41:20 UTC] Session in header: Array
+(
+    [error] => Vui lòng nhập tên đăng nhập<br>Vui lòng nhập mật khẩu
+)
+
+[28-Mar-2025 03:41:23 UTC] URL: Account/register
+[28-Mar-2025 03:41:23 UTC] Controller: Account
+[28-Mar-2025 03:41:23 UTC] Action: register
+[28-Mar-2025 03:41:23 UTC] Session in header: Array
+(
+    [error] => Vui lòng nhập tên đăng nhập<br>Vui lòng nhập mật khẩu
+)
+
+[28-Mar-2025 03:41:31 UTC] URL: admin/user
+[28-Mar-2025 03:41:31 UTC] Controller: admin
+[28-Mar-2025 03:41:31 UTC] Action: user
+[28-Mar-2025 03:47:18 UTC] URL: Account/login
+[28-Mar-2025 03:47:18 UTC] Controller: Account
+[28-Mar-2025 03:47:18 UTC] Action: login
+[28-Mar-2025 03:47:18 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 03:47:24 UTC] URL: Account/login
+[28-Mar-2025 03:47:24 UTC] Controller: Account
+[28-Mar-2025 03:47:24 UTC] Action: login
+[28-Mar-2025 03:47:24 UTC] URL: 
+[28-Mar-2025 03:47:24 UTC] Controller: 
+[28-Mar-2025 03:47:24 UTC] Action: list
+[28-Mar-2025 03:47:24 UTC] Session in header: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[28-Mar-2025 03:47:24 UTC] Current session data in list view: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[28-Mar-2025 03:47:24 UTC] URL: public/uploads/products/no-image.png
+[28-Mar-2025 03:47:24 UTC] Controller: public
+[28-Mar-2025 03:47:24 UTC] Action: uploads
+[28-Mar-2025 03:47:24 UTC] URL: Product/list
+[28-Mar-2025 03:47:24 UTC] Controller: Product
+[28-Mar-2025 03:47:24 UTC] Action: list
+[28-Mar-2025 03:47:24 UTC] Session in header: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[28-Mar-2025 03:47:24 UTC] Current session data in list view: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[28-Mar-2025 03:47:27 UTC] URL: Order/history
+[28-Mar-2025 03:47:27 UTC] Controller: Order
+[28-Mar-2025 03:47:27 UTC] Action: history
+[28-Mar-2025 03:47:27 UTC] Session in header: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[28-Mar-2025 03:47:28 UTC] URL: Account/profile
+[28-Mar-2025 03:47:28 UTC] Controller: Account
+[28-Mar-2025 03:47:28 UTC] Action: profile
+[28-Mar-2025 03:47:28 UTC] Session in header: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[28-Mar-2025 03:47:39 UTC] URL: Account/changePassword
+[28-Mar-2025 03:47:39 UTC] Controller: Account
+[28-Mar-2025 03:47:39 UTC] Action: changePassword
+[28-Mar-2025 03:47:41 UTC] URL: Account/logout
+[28-Mar-2025 03:47:41 UTC] Controller: Account
+[28-Mar-2025 03:47:41 UTC] Action: logout
+[28-Mar-2025 03:47:42 UTC] URL: Account/login
+[28-Mar-2025 03:47:42 UTC] Controller: Account
+[28-Mar-2025 03:47:42 UTC] Action: login
+[28-Mar-2025 03:47:42 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 03:47:44 UTC] URL: Account/register
+[28-Mar-2025 03:47:44 UTC] Controller: Account
+[28-Mar-2025 03:47:44 UTC] Action: register
+[28-Mar-2025 03:47:44 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 03:47:48 UTC] URL: Account/register
+[28-Mar-2025 03:47:48 UTC] Controller: Account
+[28-Mar-2025 03:47:48 UTC] Action: register
+[28-Mar-2025 03:47:48 UTC] Session in header: Array
+(
+    [error] => Vui lòng nhập tên đăng nhập
+)
+
+[28-Mar-2025 03:47:52 UTC] URL: Account/register
+[28-Mar-2025 03:47:52 UTC] Controller: Account
+[28-Mar-2025 03:47:52 UTC] Action: register
+[28-Mar-2025 03:47:52 UTC] Session in header: Array
+(
+    [error] => Vui lòng nhập tên đăng nhập
+)
+
+[28-Mar-2025 03:53:02 UTC] URL: 
+[28-Mar-2025 03:53:02 UTC] Controller: 
+[28-Mar-2025 03:53:02 UTC] Action: list
+[28-Mar-2025 03:53:02 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 03:53:02 UTC] Current session data in list view: Array
+(
+)
+
+[28-Mar-2025 03:53:02 UTC] URL: public/uploads/products/no-image.png
+[28-Mar-2025 03:53:02 UTC] Controller: public
+[28-Mar-2025 03:53:02 UTC] Action: uploads
+[28-Mar-2025 03:53:02 UTC] URL: Product/list
+[28-Mar-2025 03:53:02 UTC] Controller: Product
+[28-Mar-2025 03:53:02 UTC] Action: list
+[28-Mar-2025 03:53:02 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 03:53:02 UTC] Current session data in list view: Array
+(
+)
+
+[28-Mar-2025 03:53:02 UTC] URL: public/uploads/products/no-image.png
+[28-Mar-2025 03:53:02 UTC] Controller: public
+[28-Mar-2025 03:53:02 UTC] Action: uploads
+[28-Mar-2025 03:53:03 UTC] URL: Product/list
+[28-Mar-2025 03:53:03 UTC] Controller: Product
+[28-Mar-2025 03:53:03 UTC] Action: list
+[28-Mar-2025 03:53:03 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 03:53:03 UTC] Current session data in list view: Array
+(
+)
+
+[28-Mar-2025 03:53:08 UTC] URL: Account/login
+[28-Mar-2025 03:53:08 UTC] Controller: Account
+[28-Mar-2025 03:53:08 UTC] Action: login
+[28-Mar-2025 03:53:08 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 03:53:10 UTC] URL: Account/forgotPassword
+[28-Mar-2025 03:53:10 UTC] Controller: Account
+[28-Mar-2025 03:53:10 UTC] Action: forgotPassword
+[28-Mar-2025 03:53:11 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 03:53:38 UTC] URL: Account/register
+[28-Mar-2025 03:53:38 UTC] Controller: Account
+[28-Mar-2025 03:53:38 UTC] Action: register
+[28-Mar-2025 03:53:38 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 03:53:56 UTC] URL: Account/register
+[28-Mar-2025 03:53:56 UTC] Controller: Account
+[28-Mar-2025 03:53:56 UTC] Action: register
+[28-Mar-2025 03:53:56 UTC] Session in header: Array
+(
+    [error] => Vui lòng nhập tên đăng nhập<br>Vui lòng nhập mật khẩu
+)
+
+[28-Mar-2025 03:54:44 UTC] URL: Product/list
+[28-Mar-2025 03:54:44 UTC] Controller: Product
+[28-Mar-2025 03:54:44 UTC] Action: list
+[28-Mar-2025 03:54:44 UTC] Session in header: Array
+(
+    [error] => Vui lòng nhập tên đăng nhập<br>Vui lòng nhập mật khẩu
+)
+
+[28-Mar-2025 03:54:44 UTC] Current session data in list view: Array
+(
+    [error] => Vui lòng nhập tên đăng nhập<br>Vui lòng nhập mật khẩu
+)
+
+[28-Mar-2025 03:54:44 UTC] URL: public/uploads/products/no-image.png
+[28-Mar-2025 03:54:44 UTC] Controller: public
+[28-Mar-2025 03:54:44 UTC] Action: uploads
+[28-Mar-2025 03:54:44 UTC] URL: Product/list
+[28-Mar-2025 03:54:44 UTC] Controller: Product
+[28-Mar-2025 03:54:44 UTC] Action: list
+[28-Mar-2025 03:54:44 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 03:54:44 UTC] Current session data in list view: Array
+(
+)
+
+[28-Mar-2025 03:54:48 UTC] URL: Account/register
+[28-Mar-2025 03:54:48 UTC] Controller: Account
+[28-Mar-2025 03:54:48 UTC] Action: register
+[28-Mar-2025 03:54:48 UTC] Session in header: Array
+(
+    [error] => Vui lòng nhập tên đăng nhập<br>Vui lòng nhập mật khẩu
+)
+
+[28-Mar-2025 03:57:17 UTC] URL: Account/register
+[28-Mar-2025 03:57:17 UTC] Controller: Account
+[28-Mar-2025 03:57:17 UTC] Action: register
+[28-Mar-2025 03:57:17 UTC] Session in header: Array
+(
+    [error] => Vui lòng nhập tên đăng nhập
+)
+
+[28-Mar-2025 03:59:33 UTC] URL: Account/register
+[28-Mar-2025 03:59:33 UTC] Controller: Account
+[28-Mar-2025 03:59:33 UTC] Action: register
+[28-Mar-2025 03:59:33 UTC] Session in header: Array
+(
+    [error] => Vui lòng nhập tên đăng nhập
+)
+
+[28-Mar-2025 04:00:03 UTC] URL: Account/register
+[28-Mar-2025 04:00:03 UTC] Controller: Account
+[28-Mar-2025 04:00:03 UTC] Action: register
+[28-Mar-2025 04:00:04 UTC] Session in header: Array
+(
+    [error] => Email không hợp lệ
+)
+
+[28-Mar-2025 04:00:26 UTC] URL: Account/register
+[28-Mar-2025 04:00:26 UTC] Controller: Account
+[28-Mar-2025 04:00:26 UTC] Action: register
+[28-Mar-2025 04:00:26 UTC] URL: Account/login
+[28-Mar-2025 04:00:26 UTC] Controller: Account
+[28-Mar-2025 04:00:26 UTC] Action: login
+[28-Mar-2025 04:00:26 UTC] Session in header: Array
+(
+    [success] => Đăng ký thành công! Vui lòng đăng nhập.
+)
+
+[28-Mar-2025 04:01:30 UTC] URL: Account/login
+[28-Mar-2025 04:01:30 UTC] Controller: Account
+[28-Mar-2025 04:01:30 UTC] Action: login
+[28-Mar-2025 04:01:30 UTC] Session in header: Array
+(
+    [success] => Đăng ký thành công! Vui lòng đăng nhập.
+)
+
+[28-Mar-2025 04:01:38 UTC] URL: Account/forgotPassword
+[28-Mar-2025 04:01:38 UTC] Controller: Account
+[28-Mar-2025 04:01:38 UTC] Action: forgotPassword
+[28-Mar-2025 04:01:38 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 04:01:41 UTC] URL: Account/sendResetCode
+[28-Mar-2025 04:01:41 UTC] Controller: Account
+[28-Mar-2025 04:01:41 UTC] Action: sendResetCode
+[28-Mar-2025 04:01:45 UTC] URL: Account/sendResetCode
+[28-Mar-2025 04:01:45 UTC] Controller: Account
+[28-Mar-2025 04:01:45 UTC] Action: sendResetCode
+[28-Mar-2025 04:03:16 UTC] URL: Account/resetPassword
+[28-Mar-2025 04:03:16 UTC] Controller: Account
+[28-Mar-2025 04:03:16 UTC] Action: resetPassword
+[28-Mar-2025 04:03:21 UTC] URL: Account/resetPassword
+[28-Mar-2025 04:03:21 UTC] Controller: Account
+[28-Mar-2025 04:03:21 UTC] Action: resetPassword
+[28-Mar-2025 04:03:26 UTC] URL: Account/resetPassword
+[28-Mar-2025 04:03:26 UTC] Controller: Account
+[28-Mar-2025 04:03:26 UTC] Action: resetPassword
+[28-Mar-2025 04:04:46 UTC] URL: Account/login
+[28-Mar-2025 04:04:46 UTC] Controller: Account
+[28-Mar-2025 04:04:46 UTC] Action: login
+[28-Mar-2025 04:04:46 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 04:04:47 UTC] URL: Account/forgotPassword
+[28-Mar-2025 04:04:47 UTC] Controller: Account
+[28-Mar-2025 04:04:47 UTC] Action: forgotPassword
+[28-Mar-2025 04:04:47 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 04:04:52 UTC] URL: Account/sendResetCode
+[28-Mar-2025 04:04:52 UTC] Controller: Account
+[28-Mar-2025 04:04:52 UTC] Action: sendResetCode
+[28-Mar-2025 04:05:15 UTC] URL: Account/resetPassword
+[28-Mar-2025 04:05:15 UTC] Controller: Account
+[28-Mar-2025 04:05:15 UTC] Action: resetPassword
+[28-Mar-2025 04:05:48 UTC] URL: Account/login
+[28-Mar-2025 04:05:48 UTC] Controller: Account
+[28-Mar-2025 04:05:48 UTC] Action: login
+[28-Mar-2025 04:05:48 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 04:08:31 UTC] URL: Account/forgotPassword
+[28-Mar-2025 04:08:31 UTC] Controller: Account
+[28-Mar-2025 04:08:31 UTC] Action: forgotPassword
+[28-Mar-2025 04:08:31 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 04:08:35 UTC] URL: Account/sendResetCode
+[28-Mar-2025 04:08:35 UTC] Controller: Account
+[28-Mar-2025 04:08:35 UTC] Action: sendResetCode
+[28-Mar-2025 04:08:48 UTC] URL: Account/resetPassword
+[28-Mar-2025 04:08:48 UTC] Controller: Account
+[28-Mar-2025 04:08:48 UTC] Action: resetPassword
+[28-Mar-2025 04:08:50 UTC] URL: Account/login
+[28-Mar-2025 04:08:50 UTC] Controller: Account
+[28-Mar-2025 04:08:50 UTC] Action: login
+[28-Mar-2025 04:08:50 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 04:08:57 UTC] URL: Account/register
+[28-Mar-2025 04:08:57 UTC] Controller: Account
+[28-Mar-2025 04:08:57 UTC] Action: register
+[28-Mar-2025 04:08:57 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 04:08:57 UTC] URL: Account/login
+[28-Mar-2025 04:08:57 UTC] Controller: Account
+[28-Mar-2025 04:08:57 UTC] Action: login
+[28-Mar-2025 04:08:57 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 04:09:01 UTC] URL: Account/register
+[28-Mar-2025 04:09:01 UTC] Controller: Account
+[28-Mar-2025 04:09:01 UTC] Action: register
+[28-Mar-2025 04:09:01 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 04:09:02 UTC] URL: Account/login
+[28-Mar-2025 04:09:02 UTC] Controller: Account
+[28-Mar-2025 04:09:02 UTC] Action: login
+[28-Mar-2025 04:09:02 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 04:09:03 UTC] URL: Account/register
+[28-Mar-2025 04:09:03 UTC] Controller: Account
+[28-Mar-2025 04:09:03 UTC] Action: register
+[28-Mar-2025 04:09:03 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 04:09:10 UTC] URL: Account/login
+[28-Mar-2025 04:09:10 UTC] Controller: Account
+[28-Mar-2025 04:09:10 UTC] Action: login
+[28-Mar-2025 04:09:10 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 04:10:32 UTC] URL: Account/register
+[28-Mar-2025 04:10:32 UTC] Controller: Account
+[28-Mar-2025 04:10:32 UTC] Action: register
+[28-Mar-2025 04:10:32 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 04:10:38 UTC] URL: Account/register
+[28-Mar-2025 04:10:38 UTC] Controller: Account
+[28-Mar-2025 04:10:38 UTC] Action: register
+[28-Mar-2025 04:10:38 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 04:10:44 UTC] URL: Account/register
+[28-Mar-2025 04:10:44 UTC] Controller: Account
+[28-Mar-2025 04:10:44 UTC] Action: register
+[28-Mar-2025 04:10:44 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 04:10:47 UTC] URL: Account/login
+[28-Mar-2025 04:10:47 UTC] Controller: Account
+[28-Mar-2025 04:10:47 UTC] Action: login
+[28-Mar-2025 04:10:47 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 04:14:21 UTC] URL: Account/login
+[28-Mar-2025 04:14:21 UTC] Controller: Account
+[28-Mar-2025 04:14:21 UTC] Action: login
+[28-Mar-2025 04:14:21 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 04:14:59 UTC] URL: Account/login
+[28-Mar-2025 04:14:59 UTC] Controller: Account
+[28-Mar-2025 04:14:59 UTC] Action: login
+[28-Mar-2025 04:14:59 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 04:15:02 UTC] URL: Account/login
+[28-Mar-2025 04:15:02 UTC] Controller: Account
+[28-Mar-2025 04:15:02 UTC] Action: login
+[28-Mar-2025 04:15:02 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 04:15:05 UTC] URL: Account/login
+[28-Mar-2025 04:15:05 UTC] Controller: Account
+[28-Mar-2025 04:15:05 UTC] Action: login
+[28-Mar-2025 04:15:05 UTC] URL: 
+[28-Mar-2025 04:15:05 UTC] Controller: 
+[28-Mar-2025 04:15:05 UTC] Action: list
+[28-Mar-2025 04:15:05 UTC] Session in header: Array
+(
+    [user_id] => 1
+    [username] => admin@gmail.com
+    [role] => admin
+    [cart_count] => 0
+)
+
+[28-Mar-2025 04:15:05 UTC] Current session data in list view: Array
+(
+    [user_id] => 1
+    [username] => admin@gmail.com
+    [role] => admin
+    [cart_count] => 0
+)
+
+[28-Mar-2025 04:15:05 UTC] URL: public/uploads/products/no-image.png
+[28-Mar-2025 04:15:05 UTC] Controller: public
+[28-Mar-2025 04:15:05 UTC] Action: uploads
+[28-Mar-2025 04:15:05 UTC] URL: Product/list
+[28-Mar-2025 04:15:05 UTC] Controller: Product
+[28-Mar-2025 04:15:05 UTC] Action: list
+[28-Mar-2025 04:15:05 UTC] Session in header: Array
+(
+    [user_id] => 1
+    [username] => admin@gmail.com
+    [role] => admin
+    [cart_count] => 0
+)
+
+[28-Mar-2025 04:15:05 UTC] Current session data in list view: Array
+(
+    [user_id] => 1
+    [username] => admin@gmail.com
+    [role] => admin
+    [cart_count] => 0
+)
+
+[28-Mar-2025 04:15:08 UTC] URL: admin/product
+[28-Mar-2025 04:15:08 UTC] Controller: admin
+[28-Mar-2025 04:15:08 UTC] Action: product
+[28-Mar-2025 04:15:08 UTC] URL: public/uploads/products/no-image.png
+[28-Mar-2025 04:15:08 UTC] Controller: public
+[28-Mar-2025 04:15:08 UTC] Action: uploads
+[28-Mar-2025 04:15:08 UTC] URL: Product/list
+[28-Mar-2025 04:15:08 UTC] Controller: Product
+[28-Mar-2025 04:15:08 UTC] Action: list
+[28-Mar-2025 04:15:08 UTC] Session in header: Array
+(
+    [user_id] => 1
+    [username] => admin@gmail.com
+    [role] => admin
+    [cart_count] => 0
+)
+
+[28-Mar-2025 04:15:08 UTC] Current session data in list view: Array
+(
+    [user_id] => 1
+    [username] => admin@gmail.com
+    [role] => admin
+    [cart_count] => 0
+)
+
+[28-Mar-2025 04:15:08 UTC] URL: public/uploads/products/no-image.png
+[28-Mar-2025 04:15:08 UTC] Controller: public
+[28-Mar-2025 04:15:08 UTC] Action: uploads
+[28-Mar-2025 04:15:08 UTC] URL: Product/list
+[28-Mar-2025 04:15:08 UTC] Controller: Product
+[28-Mar-2025 04:15:08 UTC] Action: list
+[28-Mar-2025 04:15:08 UTC] Session in header: Array
+(
+    [user_id] => 1
+    [username] => admin@gmail.com
+    [role] => admin
+    [cart_count] => 0
+)
+
+[28-Mar-2025 04:15:08 UTC] Current session data in list view: Array
+(
+    [user_id] => 1
+    [username] => admin@gmail.com
+    [role] => admin
+    [cart_count] => 0
+)
+
+[28-Mar-2025 04:15:11 UTC] URL: Product/list
+[28-Mar-2025 04:15:11 UTC] Controller: Product
+[28-Mar-2025 04:15:11 UTC] Action: list
+[28-Mar-2025 04:15:11 UTC] Session in header: Array
+(
+    [user_id] => 1
+    [username] => admin@gmail.com
+    [role] => admin
+    [cart_count] => 0
+)
+
+[28-Mar-2025 04:15:11 UTC] Current session data in list view: Array
+(
+    [user_id] => 1
+    [username] => admin@gmail.com
+    [role] => admin
+    [cart_count] => 0
+)
+
+[28-Mar-2025 04:15:44 UTC] URL: admin/product
+[28-Mar-2025 04:15:44 UTC] Controller: admin
+[28-Mar-2025 04:15:44 UTC] Action: product
+[28-Mar-2025 04:15:44 UTC] URL: public/uploads/products/no-image.png
+[28-Mar-2025 04:15:44 UTC] Controller: public
+[28-Mar-2025 04:15:44 UTC] Action: uploads
+[28-Mar-2025 04:15:44 UTC] URL: Product/list
+[28-Mar-2025 04:15:44 UTC] Controller: Product
+[28-Mar-2025 04:15:44 UTC] Action: list
+[28-Mar-2025 04:15:44 UTC] Session in header: Array
+(
+    [user_id] => 1
+    [username] => admin@gmail.com
+    [role] => admin
+    [cart_count] => 0
+)
+
+[28-Mar-2025 04:15:44 UTC] Current session data in list view: Array
+(
+    [user_id] => 1
+    [username] => admin@gmail.com
+    [role] => admin
+    [cart_count] => 0
+)
+
+[28-Mar-2025 04:15:46 UTC] URL: admin/category
+[28-Mar-2025 04:15:46 UTC] Controller: admin
+[28-Mar-2025 04:15:46 UTC] Action: category
+[28-Mar-2025 04:15:47 UTC] URL: admin/user
+[28-Mar-2025 04:15:47 UTC] Controller: admin
+[28-Mar-2025 04:15:47 UTC] Action: user
+[28-Mar-2025 04:15:47 UTC] URL: admin/product
+[28-Mar-2025 04:15:47 UTC] Controller: admin
+[28-Mar-2025 04:15:47 UTC] Action: product
+[28-Mar-2025 04:15:48 UTC] URL: public/uploads/products/no-image.png
+[28-Mar-2025 04:15:48 UTC] Controller: public
+[28-Mar-2025 04:15:48 UTC] Action: uploads
+[28-Mar-2025 04:15:48 UTC] URL: Product/list
+[28-Mar-2025 04:15:48 UTC] Controller: Product
+[28-Mar-2025 04:15:48 UTC] Action: list
+[28-Mar-2025 04:15:48 UTC] Session in header: Array
+(
+    [user_id] => 1
+    [username] => admin@gmail.com
+    [role] => admin
+    [cart_count] => 0
+)
+
+[28-Mar-2025 04:15:48 UTC] Current session data in list view: Array
+(
+    [user_id] => 1
+    [username] => admin@gmail.com
+    [role] => admin
+    [cart_count] => 0
+)
+
+[28-Mar-2025 04:15:50 UTC] URL: admin/product
+[28-Mar-2025 04:15:50 UTC] Controller: admin
+[28-Mar-2025 04:15:50 UTC] Action: product
+[28-Mar-2025 04:15:53 UTC] URL: admin/product/delete/18
+[28-Mar-2025 04:15:53 UTC] Controller: admin
+[28-Mar-2025 04:15:53 UTC] Action: product
+[28-Mar-2025 04:15:53 UTC] URL: admin/product
+[28-Mar-2025 04:15:53 UTC] Controller: admin
+[28-Mar-2025 04:15:53 UTC] Action: product
+[28-Mar-2025 04:15:53 UTC] URL: public/uploads/products/no-image.png
+[28-Mar-2025 04:15:53 UTC] Controller: public
+[28-Mar-2025 04:15:53 UTC] Action: uploads
+[28-Mar-2025 04:15:54 UTC] URL: Product/list
+[28-Mar-2025 04:15:54 UTC] Controller: Product
+[28-Mar-2025 04:15:54 UTC] Action: list
+[28-Mar-2025 04:15:54 UTC] Session in header: Array
+(
+    [user_id] => 1
+    [username] => admin@gmail.com
+    [role] => admin
+    [cart_count] => 0
+)
+
+[28-Mar-2025 04:15:54 UTC] Current session data in list view: Array
+(
+    [user_id] => 1
+    [username] => admin@gmail.com
+    [role] => admin
+    [cart_count] => 0
+)
+
+[28-Mar-2025 04:15:57 UTC] URL: Product/list
+[28-Mar-2025 04:15:57 UTC] Controller: Product
+[28-Mar-2025 04:15:57 UTC] Action: list
+[28-Mar-2025 04:15:57 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 04:15:57 UTC] Current session data in list view: Array
+(
+)
+
+[28-Mar-2025 04:15:57 UTC] URL: public/uploads/products/no-image.png
+[28-Mar-2025 04:15:57 UTC] Controller: public
+[28-Mar-2025 04:15:57 UTC] Action: uploads
+[28-Mar-2025 04:15:57 UTC] URL: Product/list
+[28-Mar-2025 04:15:57 UTC] Controller: Product
+[28-Mar-2025 04:15:57 UTC] Action: list
+[28-Mar-2025 04:15:57 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 04:15:57 UTC] Current session data in list view: Array
+(
+)
+
+[28-Mar-2025 04:16:05 UTC] URL: Account/login
+[28-Mar-2025 04:16:05 UTC] Controller: Account
+[28-Mar-2025 04:16:05 UTC] Action: login
+[28-Mar-2025 04:16:05 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 04:16:06 UTC] URL: Account/forgotPassword
+[28-Mar-2025 04:16:06 UTC] Controller: Account
+[28-Mar-2025 04:16:06 UTC] Action: forgotPassword
+[28-Mar-2025 04:16:06 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 04:16:14 UTC] URL: Account/sendResetCode
+[28-Mar-2025 04:16:14 UTC] Controller: Account
+[28-Mar-2025 04:16:14 UTC] Action: sendResetCode
+[28-Mar-2025 04:16:37 UTC] URL: Account/resetPassword
+[28-Mar-2025 04:16:37 UTC] Controller: Account
+[28-Mar-2025 04:16:37 UTC] Action: resetPassword
+[28-Mar-2025 04:16:39 UTC] URL: Account/login
+[28-Mar-2025 04:16:39 UTC] Controller: Account
+[28-Mar-2025 04:16:39 UTC] Action: login
+[28-Mar-2025 04:16:39 UTC] Session in header: Array
+(
+)
+
+[28-Mar-2025 04:16:49 UTC] URL: Account/login
+[28-Mar-2025 04:16:49 UTC] Controller: Account
+[28-Mar-2025 04:16:49 UTC] Action: login
+[28-Mar-2025 04:16:49 UTC] URL: 
+[28-Mar-2025 04:16:49 UTC] Controller: 
+[28-Mar-2025 04:16:49 UTC] Action: list
+[28-Mar-2025 04:16:49 UTC] Session in header: Array
+(
+    [user_id] => 7
+    [username] => nguoisudungthu3@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[28-Mar-2025 04:16:49 UTC] Current session data in list view: Array
+(
+    [user_id] => 7
+    [username] => nguoisudungthu3@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[28-Mar-2025 04:16:49 UTC] URL: public/uploads/products/no-image.png
+[28-Mar-2025 04:16:49 UTC] Controller: public
+[28-Mar-2025 04:16:49 UTC] Action: uploads
+[28-Mar-2025 04:16:49 UTC] URL: Product/list
+[28-Mar-2025 04:16:49 UTC] Controller: Product
+[28-Mar-2025 04:16:49 UTC] Action: list
+[28-Mar-2025 04:16:49 UTC] Session in header: Array
+(
+    [user_id] => 7
+    [username] => nguoisudungthu3@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[28-Mar-2025 04:16:49 UTC] Current session data in list view: Array
+(
+    [user_id] => 7
+    [username] => nguoisudungthu3@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[28-Mar-2025 04:20:24 UTC] URL: Product/list
+[28-Mar-2025 04:20:24 UTC] Controller: Product
+[28-Mar-2025 04:20:24 UTC] Action: list
+[28-Mar-2025 04:20:24 UTC] Session in header: Array
+(
+    [user_id] => 7
+    [username] => nguoisudungthu3@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[28-Mar-2025 04:20:24 UTC] Current session data in list view: Array
+(
+    [user_id] => 7
+    [username] => nguoisudungthu3@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[28-Mar-2025 04:20:24 UTC] URL: public/uploads/products/no-image.png
+[28-Mar-2025 04:20:24 UTC] Controller: public
+[28-Mar-2025 04:20:24 UTC] Action: uploads
+[28-Mar-2025 04:20:24 UTC] URL: Product/list
+[28-Mar-2025 04:20:24 UTC] Controller: Product
+[28-Mar-2025 04:20:24 UTC] Action: list
+[28-Mar-2025 04:20:24 UTC] Session in header: Array
+(
+    [user_id] => 7
+    [username] => nguoisudungthu3@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[28-Mar-2025 04:20:24 UTC] Current session data in list view: Array
+(
+    [user_id] => 7
+    [username] => nguoisudungthu3@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[28-Mar-2025 04:20:24 UTC] URL: public/uploads/products/no-image.png
+[28-Mar-2025 04:20:24 UTC] Controller: public
+[28-Mar-2025 04:20:24 UTC] Action: uploads
+[28-Mar-2025 04:20:24 UTC] URL: Product/list
+[28-Mar-2025 04:20:24 UTC] Controller: Product
+[28-Mar-2025 04:20:24 UTC] Action: list
+[28-Mar-2025 04:20:24 UTC] Session in header: Array
+(
+    [user_id] => 7
+    [username] => nguoisudungthu3@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[28-Mar-2025 04:20:24 UTC] Current session data in list view: Array
+(
+    [user_id] => 7
+    [username] => nguoisudungthu3@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[28-Mar-2025 04:20:25 UTC] URL: Product/list
+[28-Mar-2025 04:20:25 UTC] Controller: Product
+[28-Mar-2025 04:20:25 UTC] Action: list
+[28-Mar-2025 04:20:25 UTC] Session in header: Array
+(
+    [user_id] => 7
+    [username] => nguoisudungthu3@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[28-Mar-2025 04:20:25 UTC] Current session data in list view: Array
+(
+    [user_id] => 7
+    [username] => nguoisudungthu3@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[28-Mar-2025 04:20:25 UTC] URL: public/uploads/products/no-image.png
+[28-Mar-2025 04:20:25 UTC] Controller: public
+[28-Mar-2025 04:20:25 UTC] Action: uploads
+[28-Mar-2025 04:20:25 UTC] URL: Product/list
+[28-Mar-2025 04:20:25 UTC] Controller: Product
+[28-Mar-2025 04:20:25 UTC] Action: list
+[28-Mar-2025 04:20:25 UTC] Session in header: Array
+(
+    [user_id] => 7
+    [username] => nguoisudungthu3@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[28-Mar-2025 04:20:26 UTC] Current session data in list view: Array
+(
+    [user_id] => 7
+    [username] => nguoisudungthu3@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[28-Mar-2025 04:20:27 UTC] URL: Product/list
+[28-Mar-2025 04:20:27 UTC] Controller: Product
+[28-Mar-2025 04:20:27 UTC] Action: list
+[28-Mar-2025 04:20:27 UTC] Session in header: Array
+(
+    [user_id] => 7
+    [username] => nguoisudungthu3@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[28-Mar-2025 04:20:27 UTC] Current session data in list view: Array
+(
+    [user_id] => 7
+    [username] => nguoisudungthu3@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[28-Mar-2025 04:20:28 UTC] URL: Product/list
+[28-Mar-2025 04:20:28 UTC] Controller: Product
+[28-Mar-2025 04:20:28 UTC] Action: list
+[28-Mar-2025 04:20:28 UTC] Session in header: Array
+(
+    [user_id] => 7
+    [username] => nguoisudungthu3@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[28-Mar-2025 04:20:28 UTC] Current session data in list view: Array
+(
+    [user_id] => 7
+    [username] => nguoisudungthu3@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[28-Mar-2025 04:20:30 UTC] URL: Product/list
+[28-Mar-2025 04:20:30 UTC] Controller: Product
+[28-Mar-2025 04:20:30 UTC] Action: list
+[28-Mar-2025 04:20:30 UTC] Session in header: Array
+(
+    [user_id] => 7
+    [username] => nguoisudungthu3@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[28-Mar-2025 04:20:30 UTC] Current session data in list view: Array
+(
+    [user_id] => 7
+    [username] => nguoisudungthu3@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[29-Mar-2025 07:48:43 UTC] URL: 
+[29-Mar-2025 07:48:43 UTC] Controller: 
+[29-Mar-2025 07:48:43 UTC] Action: list
+[29-Mar-2025 07:48:43 UTC] Session in header: Array
+(
+)
+
+[29-Mar-2025 07:48:43 UTC] Current session data in list view: Array
+(
+)
+
+[29-Mar-2025 07:48:44 UTC] URL: public/uploads/products/no-image.png
+[29-Mar-2025 07:48:44 UTC] Controller: public
+[29-Mar-2025 07:48:44 UTC] Action: uploads
+[29-Mar-2025 07:48:44 UTC] URL: Product/list
+[29-Mar-2025 07:48:44 UTC] Controller: Product
+[29-Mar-2025 07:48:44 UTC] Action: list
+[29-Mar-2025 07:48:44 UTC] Session in header: Array
+(
+)
+
+[29-Mar-2025 07:48:44 UTC] Current session data in list view: Array
+(
+)
+
+[29-Mar-2025 07:48:45 UTC] URL: Account/login
+[29-Mar-2025 07:48:45 UTC] Controller: Account
+[29-Mar-2025 07:48:45 UTC] Action: login
+[29-Mar-2025 07:48:45 UTC] Session in header: Array
+(
+)
+
+[29-Mar-2025 07:48:46 UTC] URL: Product/list
+[29-Mar-2025 07:48:46 UTC] Controller: Product
+[29-Mar-2025 07:48:46 UTC] Action: list
+[29-Mar-2025 07:48:46 UTC] Session in header: Array
+(
+)
+
+[29-Mar-2025 07:48:46 UTC] Current session data in list view: Array
+(
+)
+
+[29-Mar-2025 07:48:46 UTC] URL: public/uploads/products/no-image.png
+[29-Mar-2025 07:48:46 UTC] Controller: public
+[29-Mar-2025 07:48:46 UTC] Action: uploads
+[29-Mar-2025 07:48:46 UTC] URL: Product/list
+[29-Mar-2025 07:48:46 UTC] Controller: Product
+[29-Mar-2025 07:48:46 UTC] Action: list
+[29-Mar-2025 07:48:46 UTC] Session in header: Array
+(
+)
+
+[29-Mar-2025 07:48:46 UTC] Current session data in list view: Array
+(
+)
+
+[29-Mar-2025 07:48:49 UTC] URL: Account/login
+[29-Mar-2025 07:48:49 UTC] Controller: Account
+[29-Mar-2025 07:48:49 UTC] Action: login
+[29-Mar-2025 07:48:49 UTC] Session in header: Array
+(
+)
+
+[29-Mar-2025 07:48:56 UTC] URL: Product/list
+[29-Mar-2025 07:48:56 UTC] Controller: Product
+[29-Mar-2025 07:48:56 UTC] Action: list
+[29-Mar-2025 07:48:56 UTC] Session in header: Array
+(
+)
+
+[29-Mar-2025 07:48:56 UTC] Current session data in list view: Array
+(
+)
+
+[29-Mar-2025 07:48:56 UTC] URL: public/uploads/products/no-image.png
+[29-Mar-2025 07:48:56 UTC] Controller: public
+[29-Mar-2025 07:48:56 UTC] Action: uploads
+[29-Mar-2025 07:48:56 UTC] URL: Product/list
+[29-Mar-2025 07:48:56 UTC] Controller: Product
+[29-Mar-2025 07:48:56 UTC] Action: list
+[29-Mar-2025 07:48:56 UTC] Session in header: Array
+(
+)
+
+[29-Mar-2025 07:48:56 UTC] Current session data in list view: Array
+(
+)
+
+[29-Mar-2025 07:48:56 UTC] URL: Account/login
+[29-Mar-2025 07:48:56 UTC] Controller: Account
+[29-Mar-2025 07:48:56 UTC] Action: login
+[29-Mar-2025 07:48:56 UTC] Session in header: Array
+(
+)
+
+[29-Mar-2025 07:48:57 UTC] URL: Account/register
+[29-Mar-2025 07:48:57 UTC] Controller: Account
+[29-Mar-2025 07:48:57 UTC] Action: register
+[29-Mar-2025 07:48:57 UTC] Session in header: Array
+(
+)
+
+[29-Mar-2025 07:48:57 UTC] URL: Account/login
+[29-Mar-2025 07:48:57 UTC] Controller: Account
+[29-Mar-2025 07:48:57 UTC] Action: login
+[29-Mar-2025 07:48:57 UTC] Session in header: Array
+(
+)
+
+[29-Mar-2025 07:49:02 UTC] URL: Account/login
+[29-Mar-2025 07:49:02 UTC] Controller: Account
+[29-Mar-2025 07:49:02 UTC] Action: login
+[29-Mar-2025 07:49:02 UTC] URL: 
+[29-Mar-2025 07:49:02 UTC] Controller: 
+[29-Mar-2025 07:49:02 UTC] Action: list
+[29-Mar-2025 07:49:02 UTC] Session in header: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[29-Mar-2025 07:49:02 UTC] Current session data in list view: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[29-Mar-2025 07:49:02 UTC] URL: public/uploads/products/no-image.png
+[29-Mar-2025 07:49:02 UTC] Controller: public
+[29-Mar-2025 07:49:02 UTC] Action: uploads
+[29-Mar-2025 07:49:02 UTC] URL: Product/list
+[29-Mar-2025 07:49:02 UTC] Controller: Product
+[29-Mar-2025 07:49:02 UTC] Action: list
+[29-Mar-2025 07:49:02 UTC] Session in header: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[29-Mar-2025 07:49:02 UTC] Current session data in list view: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[29-Mar-2025 07:49:11 UTC] URL: Product/cart
+[29-Mar-2025 07:49:11 UTC] Controller: Product
+[29-Mar-2025 07:49:11 UTC] Action: cart
+[29-Mar-2025 07:49:11 UTC] Cart Items: Array
+(
+)
+
+[29-Mar-2025 07:49:11 UTC] Total: 0
+[29-Mar-2025 07:49:11 UTC] Session in header: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[29-Mar-2025 07:49:12 UTC] URL: Product/list
+[29-Mar-2025 07:49:12 UTC] Controller: Product
+[29-Mar-2025 07:49:12 UTC] Action: list
+[29-Mar-2025 07:49:12 UTC] Session in header: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[29-Mar-2025 07:49:12 UTC] Current session data in list view: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[29-Mar-2025 07:49:13 UTC] URL: public/uploads/products/no-image.png
+[29-Mar-2025 07:49:13 UTC] Controller: public
+[29-Mar-2025 07:49:13 UTC] Action: uploads
+[29-Mar-2025 07:49:13 UTC] URL: Product/list
+[29-Mar-2025 07:49:13 UTC] Controller: Product
+[29-Mar-2025 07:49:13 UTC] Action: list
+[29-Mar-2025 07:49:13 UTC] Session in header: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[29-Mar-2025 07:49:13 UTC] Current session data in list view: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[29-Mar-2025 07:49:13 UTC] URL: Product/list
+[29-Mar-2025 07:49:13 UTC] Controller: Product
+[29-Mar-2025 07:49:13 UTC] Action: list
+[29-Mar-2025 07:49:13 UTC] Session in header: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[29-Mar-2025 07:49:13 UTC] Current session data in list view: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[29-Mar-2025 07:49:13 UTC] URL: public/uploads/products/no-image.png
+[29-Mar-2025 07:49:13 UTC] Controller: public
+[29-Mar-2025 07:49:13 UTC] Action: uploads
+[29-Mar-2025 07:49:13 UTC] URL: Product/list
+[29-Mar-2025 07:49:13 UTC] Controller: Product
+[29-Mar-2025 07:49:13 UTC] Action: list
+[29-Mar-2025 07:49:13 UTC] Session in header: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[29-Mar-2025 07:49:13 UTC] Current session data in list view: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[29-Mar-2025 07:49:14 UTC] URL: Product/list
+[29-Mar-2025 07:49:14 UTC] Controller: Product
+[29-Mar-2025 07:49:14 UTC] Action: list
+[29-Mar-2025 07:49:14 UTC] Session in header: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[29-Mar-2025 07:49:14 UTC] Current session data in list view: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[29-Mar-2025 07:49:14 UTC] URL: public/uploads/products/no-image.png
+[29-Mar-2025 07:49:14 UTC] Controller: public
+[29-Mar-2025 07:49:14 UTC] Action: uploads
+[29-Mar-2025 07:49:14 UTC] URL: Product/list
+[29-Mar-2025 07:49:14 UTC] Controller: Product
+[29-Mar-2025 07:49:14 UTC] Action: list
+[29-Mar-2025 07:49:14 UTC] Session in header: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[29-Mar-2025 07:49:14 UTC] Current session data in list view: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[29-Mar-2025 07:49:17 UTC] URL: Account/profile
+[29-Mar-2025 07:49:17 UTC] Controller: Account
+[29-Mar-2025 07:49:17 UTC] Action: profile
+[29-Mar-2025 07:49:17 UTC] Session in header: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[29-Mar-2025 07:49:18 UTC] URL: Product/cart
+[29-Mar-2025 07:49:18 UTC] Controller: Product
+[29-Mar-2025 07:49:18 UTC] Action: cart
+[29-Mar-2025 07:49:18 UTC] Cart Items: Array
+(
+)
+
+[29-Mar-2025 07:49:18 UTC] Total: 0
+[29-Mar-2025 07:49:18 UTC] Session in header: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[29-Mar-2025 07:49:20 UTC] URL: Order/history
+[29-Mar-2025 07:49:20 UTC] Controller: Order
+[29-Mar-2025 07:49:20 UTC] Action: history
+[29-Mar-2025 07:49:20 UTC] Session in header: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[29-Mar-2025 07:49:20 UTC] URL: Account/profile
+[29-Mar-2025 07:49:20 UTC] Controller: Account
+[29-Mar-2025 07:49:20 UTC] Action: profile
+[29-Mar-2025 07:49:20 UTC] Session in header: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[29-Mar-2025 07:49:22 UTC] URL: Product/list
+[29-Mar-2025 07:49:22 UTC] Controller: Product
+[29-Mar-2025 07:49:22 UTC] Action: list
+[29-Mar-2025 07:49:22 UTC] Session in header: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[29-Mar-2025 07:49:22 UTC] Current session data in list view: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[29-Mar-2025 07:49:22 UTC] URL: public/uploads/products/no-image.png
+[29-Mar-2025 07:49:22 UTC] Controller: public
+[29-Mar-2025 07:49:22 UTC] Action: uploads
+[29-Mar-2025 07:49:22 UTC] URL: Product/list
+[29-Mar-2025 07:49:22 UTC] Controller: Product
+[29-Mar-2025 07:49:22 UTC] Action: list
+[29-Mar-2025 07:49:22 UTC] Session in header: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[29-Mar-2025 07:49:22 UTC] Current session data in list view: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[29-Mar-2025 07:49:26 UTC] URL: Product/cart
+[29-Mar-2025 07:49:26 UTC] Controller: Product
+[29-Mar-2025 07:49:26 UTC] Action: cart
+[29-Mar-2025 07:49:26 UTC] Cart Items: Array
+(
+)
+
+[29-Mar-2025 07:49:26 UTC] Total: 0
+[29-Mar-2025 07:49:26 UTC] Session in header: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[29-Mar-2025 07:49:27 UTC] URL: Product/list
+[29-Mar-2025 07:49:27 UTC] Controller: Product
+[29-Mar-2025 07:49:27 UTC] Action: list
+[29-Mar-2025 07:49:27 UTC] Session in header: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[29-Mar-2025 07:49:27 UTC] Current session data in list view: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[29-Mar-2025 07:49:27 UTC] URL: public/uploads/products/no-image.png
+[29-Mar-2025 07:49:27 UTC] Controller: public
+[29-Mar-2025 07:49:27 UTC] Action: uploads
+[29-Mar-2025 07:49:27 UTC] URL: Product/list
+[29-Mar-2025 07:49:27 UTC] Controller: Product
+[29-Mar-2025 07:49:27 UTC] Action: list
+[29-Mar-2025 07:49:27 UTC] Session in header: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[29-Mar-2025 07:49:27 UTC] Current session data in list view: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 0
+)
+
+[29-Mar-2025 07:49:30 UTC] URL: public/uploads/products/no-image.png
+[29-Mar-2025 07:49:30 UTC] Controller: public
+[29-Mar-2025 07:49:30 UTC] Action: uploads
+[29-Mar-2025 07:49:30 UTC] URL: Product/addToCart
+[29-Mar-2025 07:49:30 UTC] Controller: Product
+[29-Mar-2025 07:49:30 UTC] Action: addToCart
+[29-Mar-2025 07:49:30 UTC] URL: Product/list
+[29-Mar-2025 07:49:30 UTC] Controller: Product
+[29-Mar-2025 07:49:30 UTC] Action: list
+[29-Mar-2025 07:49:30 UTC] Session in header: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 1
+)
+
+[29-Mar-2025 07:49:30 UTC] Current session data in list view: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 1
+)
+
+[29-Mar-2025 08:09:01 UTC] URL: Product/cart
+[29-Mar-2025 08:09:01 UTC] Controller: Product
+[29-Mar-2025 08:09:01 UTC] Action: cart
+[29-Mar-2025 08:09:01 UTC] Cart Items: Array
+(
+    [0] => Array
+        (
+            [id] => 45
+            [user_id] => 2
+            [product_id] => 26
+            [quantity] => 1
+            [created_at] => 2025-03-29 14:49:30
+            [updated_at] => 2025-03-29 14:49:30
+            [name] => twwst
+            [price] => 123.00
+            [image] => 
+            [subtotal] => 123.00
+        )
+
+)
+
+[29-Mar-2025 08:09:01 UTC] Total: 123
+[29-Mar-2025 08:09:01 UTC] Session in header: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 1
+)
+
+[29-Mar-2025 08:09:01 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\laragon\www\viduphp\T6-Sang\webbanhang\app\views\product\cart.php on line 43
+[29-Mar-2025 08:09:03 UTC] URL: Product/list
+[29-Mar-2025 08:09:03 UTC] Controller: Product
+[29-Mar-2025 08:09:03 UTC] Action: list
+[29-Mar-2025 08:09:03 UTC] Session in header: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 1
+)
+
+[29-Mar-2025 08:09:03 UTC] Current session data in list view: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 1
+)
+
+[29-Mar-2025 08:09:03 UTC] URL: public/uploads/products/no-image.png
+[29-Mar-2025 08:09:03 UTC] Controller: public
+[29-Mar-2025 08:09:03 UTC] Action: uploads
+[29-Mar-2025 08:09:03 UTC] URL: Product/list
+[29-Mar-2025 08:09:03 UTC] Controller: Product
+[29-Mar-2025 08:09:03 UTC] Action: list
+[29-Mar-2025 08:09:03 UTC] Session in header: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 1
+)
+
+[29-Mar-2025 08:09:03 UTC] Current session data in list view: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 1
+)
+
+[29-Mar-2025 08:09:07 UTC] URL: Product/list
+[29-Mar-2025 08:09:07 UTC] Controller: Product
+[29-Mar-2025 08:09:07 UTC] Action: list
+[29-Mar-2025 08:09:07 UTC] Session in header: Array
+(
+)
+
+[29-Mar-2025 08:09:07 UTC] Current session data in list view: Array
+(
+)
+
+[29-Mar-2025 08:09:09 UTC] URL: public/uploads/products/no-image.png
+[29-Mar-2025 08:09:09 UTC] Controller: public
+[29-Mar-2025 08:09:09 UTC] Action: uploads
+[29-Mar-2025 08:09:09 UTC] URL: Product/list
+[29-Mar-2025 08:09:09 UTC] Controller: Product
+[29-Mar-2025 08:09:09 UTC] Action: list
+[29-Mar-2025 08:09:09 UTC] Session in header: Array
+(
+)
+
+[29-Mar-2025 08:09:09 UTC] Current session data in list view: Array
+(
+)
+
+[29-Mar-2025 08:09:10 UTC] URL: public/uploads/products/no-image.png
+[29-Mar-2025 08:09:10 UTC] Controller: public
+[29-Mar-2025 08:09:10 UTC] Action: uploads
+[29-Mar-2025 08:09:10 UTC] URL: Product/list
+[29-Mar-2025 08:09:10 UTC] Controller: Product
+[29-Mar-2025 08:09:10 UTC] Action: list
+[29-Mar-2025 08:09:10 UTC] Session in header: Array
+(
+)
+
+[29-Mar-2025 08:09:10 UTC] Current session data in list view: Array
+(
+)
+
+[29-Mar-2025 08:09:16 UTC] URL: admin/product/add
+[29-Mar-2025 08:09:16 UTC] Controller: admin
+[29-Mar-2025 08:09:16 UTC] Action: product
+[29-Mar-2025 08:09:16 UTC] URL: Account/login
+[29-Mar-2025 08:09:16 UTC] Controller: Account
+[29-Mar-2025 08:09:16 UTC] Action: login
+[29-Mar-2025 08:09:16 UTC] Session in header: Array
+(
+)
+
+[29-Mar-2025 08:09:28 UTC] URL: Account/login
+[29-Mar-2025 08:09:28 UTC] Controller: Account
+[29-Mar-2025 08:09:28 UTC] Action: login
+[29-Mar-2025 08:09:28 UTC] Session in header: Array
+(
+)
+
+[29-Mar-2025 08:09:39 UTC] URL: Account/login
+[29-Mar-2025 08:09:39 UTC] Controller: Account
+[29-Mar-2025 08:09:39 UTC] Action: login
+[29-Mar-2025 08:09:39 UTC] URL: 
+[29-Mar-2025 08:09:39 UTC] Controller: 
+[29-Mar-2025 08:09:39 UTC] Action: list
+[29-Mar-2025 08:09:39 UTC] Session in header: Array
+(
+    [user_id] => 1
+    [username] => admin@gmail.com
+    [role] => admin
+    [cart_count] => 0
+)
+
+[29-Mar-2025 08:09:39 UTC] Current session data in list view: Array
+(
+    [user_id] => 1
+    [username] => admin@gmail.com
+    [role] => admin
+    [cart_count] => 0
+)
+
+[29-Mar-2025 08:09:39 UTC] URL: public/uploads/products/no-image.png
+[29-Mar-2025 08:09:39 UTC] Controller: public
+[29-Mar-2025 08:09:39 UTC] Action: uploads
+[29-Mar-2025 08:09:39 UTC] URL: Product/list
+[29-Mar-2025 08:09:39 UTC] Controller: Product
+[29-Mar-2025 08:09:39 UTC] Action: list
+[29-Mar-2025 08:09:39 UTC] Session in header: Array
+(
+    [user_id] => 1
+    [username] => admin@gmail.com
+    [role] => admin
+    [cart_count] => 0
+)
+
+[29-Mar-2025 08:09:39 UTC] Current session data in list view: Array
+(
+    [user_id] => 1
+    [username] => admin@gmail.com
+    [role] => admin
+    [cart_count] => 0
+)
+
+[29-Mar-2025 08:09:41 UTC] URL: Product/cart
+[29-Mar-2025 08:09:41 UTC] Controller: Product
+[29-Mar-2025 08:09:41 UTC] Action: cart
+[29-Mar-2025 08:09:41 UTC] Cart Items: Array
+(
+)
+
+[29-Mar-2025 08:09:41 UTC] Total: 0
+[29-Mar-2025 08:09:41 UTC] Session in header: Array
+(
+    [user_id] => 1
+    [username] => admin@gmail.com
+    [role] => admin
+    [cart_count] => 0
+)
+
+[29-Mar-2025 08:09:41 UTC] URL: admin/product
+[29-Mar-2025 08:09:41 UTC] Controller: admin
+[29-Mar-2025 08:09:41 UTC] Action: product
+[29-Mar-2025 08:09:42 UTC] URL: public/uploads/products/no-image.png
+[29-Mar-2025 08:09:42 UTC] Controller: public
+[29-Mar-2025 08:09:42 UTC] Action: uploads
+[29-Mar-2025 08:09:42 UTC] URL: Product/list
+[29-Mar-2025 08:09:42 UTC] Controller: Product
+[29-Mar-2025 08:09:42 UTC] Action: list
+[29-Mar-2025 08:09:42 UTC] Session in header: Array
+(
+    [user_id] => 1
+    [username] => admin@gmail.com
+    [role] => admin
+    [cart_count] => 0
+)
+
+[29-Mar-2025 08:09:42 UTC] Current session data in list view: Array
+(
+    [user_id] => 1
+    [username] => admin@gmail.com
+    [role] => admin
+    [cart_count] => 0
+)
+
+[29-Mar-2025 08:09:42 UTC] URL: public/uploads/products/no-image.png
+[29-Mar-2025 08:09:42 UTC] Controller: public
+[29-Mar-2025 08:09:42 UTC] Action: uploads
+[29-Mar-2025 08:09:42 UTC] URL: Product/list
+[29-Mar-2025 08:09:42 UTC] Controller: Product
+[29-Mar-2025 08:09:42 UTC] Action: list
+[29-Mar-2025 08:09:42 UTC] Session in header: Array
+(
+    [user_id] => 1
+    [username] => admin@gmail.com
+    [role] => admin
+    [cart_count] => 0
+)
+
+[29-Mar-2025 08:09:42 UTC] Current session data in list view: Array
+(
+    [user_id] => 1
+    [username] => admin@gmail.com
+    [role] => admin
+    [cart_count] => 0
+)
+
+[29-Mar-2025 08:09:44 UTC] URL: 
+[29-Mar-2025 08:09:44 UTC] Controller: 
+[29-Mar-2025 08:09:44 UTC] Action: list
+[29-Mar-2025 08:09:44 UTC] Session in header: Array
+(
+    [user_id] => 1
+    [username] => admin@gmail.com
+    [role] => admin
+    [cart_count] => 0
+)
+
+[29-Mar-2025 08:09:44 UTC] Current session data in list view: Array
+(
+    [user_id] => 1
+    [username] => admin@gmail.com
+    [role] => admin
+    [cart_count] => 0
+)
+
+[29-Mar-2025 08:09:44 UTC] URL: public/uploads/products/no-image.png
+[29-Mar-2025 08:09:44 UTC] Controller: public
+[29-Mar-2025 08:09:44 UTC] Action: uploads
+[29-Mar-2025 08:09:44 UTC] URL: Product/list
+[29-Mar-2025 08:09:44 UTC] Controller: Product
+[29-Mar-2025 08:09:44 UTC] Action: list
+[29-Mar-2025 08:09:44 UTC] Session in header: Array
+(
+    [user_id] => 1
+    [username] => admin@gmail.com
+    [role] => admin
+    [cart_count] => 0
+)
+
+[29-Mar-2025 08:09:44 UTC] Current session data in list view: Array
+(
+    [user_id] => 1
+    [username] => admin@gmail.com
+    [role] => admin
+    [cart_count] => 0
+)
+
+[29-Mar-2025 08:09:46 UTC] URL: admin/user
+[29-Mar-2025 08:09:46 UTC] Controller: admin
+[29-Mar-2025 08:09:46 UTC] Action: user
+[29-Mar-2025 08:09:48 UTC] URL: admin/user
+[29-Mar-2025 08:09:48 UTC] Controller: admin
+[29-Mar-2025 08:09:48 UTC] Action: user
+[29-Mar-2025 08:09:49 UTC] URL: admin/user
+[29-Mar-2025 08:09:49 UTC] Controller: admin
+[29-Mar-2025 08:09:49 UTC] Action: user
+[29-Mar-2025 08:11:03 UTC] URL: Product/list
+[29-Mar-2025 08:11:03 UTC] Controller: Product
+[29-Mar-2025 08:11:03 UTC] Action: list
+[29-Mar-2025 08:11:03 UTC] Session in header: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 1
+)
+
+[29-Mar-2025 08:11:03 UTC] Current session data in list view: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 1
+)
+
+[29-Mar-2025 08:11:03 UTC] URL: public/uploads/products/no-image.png
+[29-Mar-2025 08:11:03 UTC] Controller: public
+[29-Mar-2025 08:11:03 UTC] Action: uploads
+[29-Mar-2025 08:11:03 UTC] URL: Product/list
+[29-Mar-2025 08:11:03 UTC] Controller: Product
+[29-Mar-2025 08:11:03 UTC] Action: list
+[29-Mar-2025 08:11:03 UTC] Session in header: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 1
+)
+
+[29-Mar-2025 08:11:03 UTC] Current session data in list view: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 1
+)
+
+[29-Mar-2025 08:12:39 UTC] URL: Product/cart
+[29-Mar-2025 08:12:39 UTC] Controller: Product
+[29-Mar-2025 08:12:39 UTC] Action: cart
+[29-Mar-2025 08:12:39 UTC] Cart Items: Array
+(
+    [0] => Array
+        (
+            [id] => 45
+            [user_id] => 2
+            [product_id] => 26
+            [quantity] => 1
+            [created_at] => 2025-03-29 14:49:30
+            [updated_at] => 2025-03-29 14:49:30
+            [name] => twwst
+            [price] => 123.00
+            [image] => 
+            [subtotal] => 123.00
+        )
+
+)
+
+[29-Mar-2025 08:12:39 UTC] Total: 123
+[29-Mar-2025 08:12:39 UTC] Session in header: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 1
+)
+
+[29-Mar-2025 08:12:39 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\laragon\www\viduphp\T6-Sang\webbanhang\app\views\product\cart.php on line 43
+[29-Mar-2025 08:13:52 UTC] URL: Product/list
+[29-Mar-2025 08:13:52 UTC] Controller: Product
+[29-Mar-2025 08:13:52 UTC] Action: list
+[29-Mar-2025 08:13:52 UTC] Session in header: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 1
+)
+
+[29-Mar-2025 08:13:52 UTC] Current session data in list view: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 1
+)
+
+[29-Mar-2025 08:13:52 UTC] URL: public/uploads/products/no-image.png
+[29-Mar-2025 08:13:52 UTC] Controller: public
+[29-Mar-2025 08:13:52 UTC] Action: uploads
+[29-Mar-2025 08:13:52 UTC] URL: Product/list
+[29-Mar-2025 08:13:52 UTC] Controller: Product
+[29-Mar-2025 08:13:52 UTC] Action: list
+[29-Mar-2025 08:13:52 UTC] Session in header: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 1
+)
+
+[29-Mar-2025 08:13:52 UTC] Current session data in list view: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 1
+)
+
+[29-Mar-2025 08:13:52 UTC] URL: public/uploads/products/no-image.png
+[29-Mar-2025 08:13:52 UTC] Controller: public
+[29-Mar-2025 08:13:52 UTC] Action: uploads
+[29-Mar-2025 08:13:52 UTC] URL: Product/list
+[29-Mar-2025 08:13:52 UTC] Controller: Product
+[29-Mar-2025 08:13:52 UTC] Action: list
+[29-Mar-2025 08:13:52 UTC] Session in header: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 1
+)
+
+[29-Mar-2025 08:13:52 UTC] Current session data in list view: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 1
+)
+
+[29-Mar-2025 08:15:01 UTC] URL: Product/cart
+[29-Mar-2025 08:15:01 UTC] Controller: Product
+[29-Mar-2025 08:15:01 UTC] Action: cart
+[29-Mar-2025 08:15:01 UTC] Cart Items: Array
+(
+    [0] => Array
+        (
+            [id] => 45
+            [user_id] => 2
+            [product_id] => 26
+            [quantity] => 1
+            [created_at] => 2025-03-29 14:49:30
+            [updated_at] => 2025-03-29 14:49:30
+            [name] => twwst
+            [price] => 123.00
+            [image] => 
+            [subtotal] => 123.00
+        )
+
+)
+
+[29-Mar-2025 08:15:01 UTC] Total: 123
+[29-Mar-2025 08:15:01 UTC] Session in header: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 1
+)
+
+[29-Mar-2025 08:15:01 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\laragon\www\viduphp\T6-Sang\webbanhang\app\views\product\cart.php on line 43
+[29-Mar-2025 08:15:02 UTC] URL: Product/list
+[29-Mar-2025 08:15:02 UTC] Controller: Product
+[29-Mar-2025 08:15:02 UTC] Action: list
+[29-Mar-2025 08:15:02 UTC] Session in header: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 1
+)
+
+[29-Mar-2025 08:15:02 UTC] Current session data in list view: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 1
+)
+
+[29-Mar-2025 08:15:02 UTC] URL: public/uploads/products/no-image.png
+[29-Mar-2025 08:15:02 UTC] Controller: public
+[29-Mar-2025 08:15:02 UTC] Action: uploads
+[29-Mar-2025 08:15:02 UTC] URL: Product/list
+[29-Mar-2025 08:15:02 UTC] Controller: Product
+[29-Mar-2025 08:15:02 UTC] Action: list
+[29-Mar-2025 08:15:02 UTC] Session in header: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 1
+)
+
+[29-Mar-2025 08:15:02 UTC] Current session data in list view: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 1
+)
+
+[29-Mar-2025 08:30:15 UTC] URL: Product/list
+[29-Mar-2025 08:30:15 UTC] Controller: Product
+[29-Mar-2025 08:30:15 UTC] Action: list
+[29-Mar-2025 08:30:16 UTC] Session in header: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 1
+)
+
+[29-Mar-2025 08:30:16 UTC] Current session data in list view: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 1
+)
+
+[29-Mar-2025 08:30:16 UTC] URL: public/uploads/products/no-image.png
+[29-Mar-2025 08:30:16 UTC] Controller: public
+[29-Mar-2025 08:30:16 UTC] Action: uploads
+[29-Mar-2025 08:30:16 UTC] URL: Product/list
+[29-Mar-2025 08:30:16 UTC] Controller: Product
+[29-Mar-2025 08:30:16 UTC] Action: list
+[29-Mar-2025 08:30:16 UTC] Session in header: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 1
+)
+
+[29-Mar-2025 08:30:16 UTC] Current session data in list view: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 1
+)
+
+[29-Mar-2025 08:30:16 UTC] URL: public/uploads/products/no-image.png
+[29-Mar-2025 08:30:16 UTC] Controller: public
+[29-Mar-2025 08:30:16 UTC] Action: uploads
+[29-Mar-2025 08:30:16 UTC] URL: Product/list
+[29-Mar-2025 08:30:16 UTC] Controller: Product
+[29-Mar-2025 08:30:16 UTC] Action: list
+[29-Mar-2025 08:30:16 UTC] Session in header: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 1
+)
+
+[29-Mar-2025 08:30:16 UTC] Current session data in list view: Array
+(
+    [user_id] => 2
+    [username] => truongnga252003@gmail.com
+    [role] => user
+    [cart_count] => 1
+)
+

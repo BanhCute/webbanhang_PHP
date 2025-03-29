@@ -18,6 +18,14 @@ require_once ROOT_PATH . '/app/views/shares/header.php';
                         </div>
                     <?php endif; ?>
 
+                    <?php if (isset($_SESSION['success'])): ?>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <i class="fas fa-check-circle me-2"></i><?= $_SESSION['success'] ?>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        <?php unset($_SESSION['success']); ?>
+                    <?php endif; ?>
+
                     <?php if (isset($_SESSION['error'])): ?>
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <i class="fas fa-exclamation-circle me-2"></i><?= $_SESSION['error'] ?>
@@ -26,14 +34,20 @@ require_once ROOT_PATH . '/app/views/shares/header.php';
                         <?php unset($_SESSION['error']); ?>
                     <?php endif; ?>
 
-                    <form method="POST" action="<?= ROOT_URL ?>/Account/login">
+                    <form method="POST" action="<?= ROOT_URL ?>/Account/login" class="needs-validation" novalidate>
                         <div class="mb-3">
-                            <label class="form-label">Tên đăng nhập</label>
-                            <input type="text" class="form-control" name="username" required>
+                            <label class="form-label">Email (Gmail)</label>
+                            <input type="email" class="form-control" name="username" placeholder="example@gmail.com" required>
+                            <div class="invalid-feedback">
+                                Vui lòng nhập email Gmail hợp lệ
+                            </div>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Mật khẩu</label>
-                            <input type="password" class="form-control" name="password" required>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                            <div class="invalid-feedback">
+                                Vui lòng nhập mật khẩu
+                            </div>
                         </div>
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary">
@@ -46,6 +60,11 @@ require_once ROOT_PATH . '/app/views/shares/header.php';
                     <p class="mb-0">Chưa có tài khoản?
                         <a href="<?= ROOT_URL ?>/Account/register" class="text-primary">Đăng ký ngay</a>
                     </p>
+                    <div class="text-center mt-3">
+                        <a href="<?= ROOT_URL ?>/Account/forgotPassword" class="text-decoration-none">
+                            Quên mật khẩu?
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -75,34 +94,27 @@ require_once ROOT_PATH . '/app/views/shares/header.php';
 </style>
 
 <script>
-    function togglePassword(inputId) {
-        const input = document.getElementById(inputId);
-        const button = input.nextElementSibling;
-        const icon = button.querySelector('i');
-
-        if (input.type === 'password') {
-            input.type = 'text';
-            icon.classList.remove('bi-eye');
-            icon.classList.add('bi-eye-slash');
-        } else {
-            input.type = 'password';
-            icon.classList.remove('bi-eye-slash');
-            icon.classList.add('bi-eye');
-        }
-    }
-
     // Bootstrap form validation
     (function() {
-        'use strict'
-        var forms = document.querySelectorAll('.needs-validation')
+        'use strict';
+        var forms = document.querySelectorAll('.needs-validation');
         Array.prototype.slice.call(forms).forEach(function(form) {
             form.addEventListener('submit', function(event) {
-                if (!form.checkValidity()) {
-                    event.preventDefault()
-                    event.stopPropagation()
+                var emailInput = form.querySelector('input[name="username"]');
+                var emailValue = emailInput.value;
+                if (!emailValue.endsWith('@gmail.com')) {
+                    emailInput.setCustomValidity('Vui lòng nhập email Gmail hợp lệ');
+                    emailInput.classList.add('is-invalid');
+                } else {
+                    emailInput.setCustomValidity('');
                 }
-                form.classList.add('was-validated')
-            }, false)
-        })
-    })()
+
+                if (!form.checkValidity()) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        });
+    })();
 </script>

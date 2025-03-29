@@ -18,37 +18,46 @@ class AccountController
     public function register()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $username = $_POST['email'] ?? '';
+            $username = $_POST['username'] ?? '';
             $password = $_POST['password'] ?? '';
             $confirm_password = $_POST['confirm_password'] ?? '';
 
             $errors = [];
 
+            // Kiểm tra email rỗng
             if (empty($username)) {
-                $errors[] = "Vui lòng nhập tên đăng nhập";
+                $errors[] = "Vui lòng nhập email";
+            } elseif (!filter_var($username, FILTER_VALIDATE_EMAIL)) {
+                // Kiểm tra định dạng email hợp lệ
+                $errors[] = "Email không hợp lệ";
+            } elseif (!str_ends_with($username, '@gmail.com')) {
+                // Kiểm tra email có phải Gmail không
+                $errors[] = "Vui lòng sử dụng email Gmail (example@gmail.com)";
             }
 
+            // Kiểm tra mật khẩu rỗng
             if (empty($password)) {
                 $errors[] = "Vui lòng nhập mật khẩu";
             }
 
+            // Kiểm tra xác nhận mật khẩu
             if ($password !== $confirm_password) {
                 $errors[] = "Mật khẩu xác nhận không khớp";
             }
 
             if (empty($errors)) {
                 try {
-                    // Kiểm tra username đã tồn tại chưa
+                    // Kiểm tra email đã tồn tại chưa
                     $stmt = $this->db->prepare("SELECT id FROM account WHERE username = ?");
                     $stmt->execute([$username]);
                     if ($stmt->fetch()) {
-                        $_SESSION['error'] = 'Tên đăng nhập đã được sử dụng';
+                        $_SESSION['error'] = 'Email đã được sử dụng';
                     } else {
                         // Thêm user mới
                         $stmt = $this->db->prepare("
-                            INSERT INTO account (username, password, role) 
-                            VALUES (?, ?, 'user')
-                        ");
+                        INSERT INTO account (username, password, role) 
+                        VALUES (?, ?, 'user')
+                    ");
 
                         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
                         $stmt->execute([$username, $hashed_password]);
@@ -236,6 +245,146 @@ class AccountController
                 'message' => $e->getMessage()
             ]);
             exit;
+        }
+    }
+    public function forgotPassword()
+    {
+        require_once ROOT_PATH . '/app/views/account/forgot_password.php';
+    }
+
+    public function sendResetCode()
+    {
+        try {
+            $email = $_POST['email'] ?? '';
+
+            // Kiểm tra email có tồn tại
+            $sql = "SELECT id FROM account WHERE username = :email";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindValue(':email', $email);
+            $stmt->execute();
+
+            if (!$stmt->fetch()) {
+                echo json_encode([
+                    'success' => false,
+                    'message' => 'Email không tồn tại trong hệ thống'
+                ]);
+                return;
+            }
+
+            // Tạo mã xác nhận ngẫu nhiên
+            $resetCode = sprintf("%06d", mt_rand(0, 999999));
+
+            // Lưu mã xác nhận và thời gian hết hạn vào database
+            $sql = "UPDATE account SET 
+                reset_code = :reset_code,
+                reset_code_expire = DATE_ADD(NOW(), INTERVAL 15 MINUTE)
+                WHERE username = :email";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindValue(':reset_code', $resetCode);
+            $stmt->bindValue(':email', $email);
+            $stmt->execute();
+
+            // Gửi email
+            require_once ROOT_PATH . '/vendor/autoload.php';
+            $mail = new PHPMailer\PHPMailer\PHPMailer(true);
+
+            try {
+                $mail->isSMTP();
+                $mail->Host = 'smtp.gmail.com';
+                $mail->SMTPAuth = true;
+                $mail->Username = 'truongnga252003@gmail.com'; // Email của bạn
+                $mail->Password = 'psgm fxee eodl wkrz'; // Mật khẩu ứng dụng Gmail
+                $mail->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
+                $mail->Port = 587;
+                $mail->CharSet = 'UTF-8';
+
+                $mail->setFrom('truongnga252003@gmail.com', 'Shop Bảo Anh');
+                $mail->addAddress($email);
+
+                $mail->isHTML(true);
+                $mail->Subject = 'Mã xác nhận đặt lại mật khẩu';
+                $mail->Body = "
+                <h2>Đặt lại mật khẩu</h2>
+                <p>Mã xác nhận của bạn là: <strong>$resetCode</strong></p>
+                <p>Mã này sẽ hết hạn sau 15 phút.</p>
+            ";
+
+                $mail->send();
+
+                echo json_encode([
+                    'success' => true,
+                    'message' => 'Đã gửi mã xác nhận đến email của bạn'
+                ]);
+            } catch (Exception $e) {
+                echo json_encode([
+                    'success' => false,
+                    'message' => 'Không thể gửi email: ' . $mail->ErrorInfo
+                ]);
+            }
+        } catch (Exception $e) {
+            echo json_encode([
+                'success' => false,
+                'message' => 'Có lỗi xảy ra: ' . $e->getMessage()
+            ]);
+        }
+    }
+
+    public function resetPassword()
+    {
+        try {
+            $email = $_POST['email'] ?? '';
+            $resetCode = $_POST['reset_code'] ?? '';
+            $newPassword = $_POST['new_password'] ?? '';
+            $confirmPassword = $_POST['confirm_password'] ?? '';
+
+            // Kiểm tra mật khẩu mới
+            if ($newPassword !== $confirmPassword) {
+                echo json_encode([
+                    'success' => false,
+                    'message' => 'Mật khẩu xác nhận không khớp'
+                ]);
+                return;
+            }
+
+            // Kiểm tra mã xác nhận
+            $sql = "SELECT id FROM account 
+                WHERE username = :email 
+                AND reset_code = :reset_code 
+                AND reset_code_expire > NOW()";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindValue(':email', $email);
+            $stmt->bindValue(':reset_code', $resetCode);
+            $stmt->execute();
+
+            if (!$stmt->fetch()) {
+                echo json_encode([
+                    'success' => false,
+                    'message' => 'Mã xác nhận không đúng hoặc đã hết hạn'
+                ]);
+                return;
+            }
+
+            // Cập nhật mật khẩu mới
+            $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+            $sql = "UPDATE account SET 
+                password = :password,
+                reset_code = NULL,
+                reset_code_expire = NULL
+                WHERE username = :email";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindValue(':password', $hashedPassword);
+            $stmt->bindValue(':email', $email);
+            $stmt->execute();
+
+            echo json_encode([
+                'success' => true,
+                'message' => 'Đặt lại mật khẩu thành công'
+            ]);
+        } catch (Exception $e) {
+            echo json_encode([
+                'success' => false,
+                'message' => 'Có lỗi xảy ra: ' . $e->getMessage()
+            ]);
         }
     }
 }

@@ -1,4 +1,14 @@
 RewriteEngine On
+RewriteBase /T6-Sang/webbanhang/
+
+# Cho phép truy cập trực tiếp vào các file thật
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
+
+# Chuyển tất cả request về index.php
 RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
+
+# Cho phép CORS nếu cần
+Header set Access-Control-Allow-Origin "*"
+Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+Header set Access-Control-Allow-Headers "Content-Type"

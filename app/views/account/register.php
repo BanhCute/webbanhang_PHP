@@ -35,22 +35,19 @@
                 <div class="card-body p-4">
                     <h1 class="text-center mb-4">Đăng ký tài khoản</h1>
 
-                    <?php if (!empty($errors)): ?>
+                    <?php if (isset($_SESSION['error'])): ?>
                         <div class="alert alert-danger">
-                            <ul class="mb-0">
-                                <?php foreach ($errors as $error): ?>
-                                    <li><?php echo htmlspecialchars($error, ENT_QUOTES, 'UTF-8'); ?></li>
-                                <?php endforeach; ?>
-                            </ul>
+                            <?php echo htmlspecialchars($_SESSION['error'], ENT_QUOTES, 'UTF-8'); ?>
                         </div>
+                        <?php unset($_SESSION['error']); ?>
                     <?php endif; ?>
 
                     <form method="POST" action="/T6-Sang/webbanhang/Account/register" class="needs-validation" novalidate>
                         <div class="mb-3">
-                            <label for="username" class="form-label">Tên đăng nhập</label>
-                            <input type="text" class="form-control" id="username" name="username" required>
+                            <label for="username" class="form-label">Email (Gmail)</label>
+                            <input type="email" class="form-control" id="username" name="username" placeholder="example@gmail.com" required>
                             <div class="invalid-feedback">
-                                Vui lòng nhập tên đăng nhập
+                                Vui lòng nhập email Gmail hợp lệ (example@gmail.com)
                             </div>
                         </div>
 
@@ -85,6 +82,31 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // JavaScript để kiểm tra định dạng Gmail
+        (function() {
+            'use strict';
+            var forms = document.querySelectorAll('.needs-validation');
+            Array.prototype.slice.call(forms).forEach(function(form) {
+                form.addEventListener('submit', function(event) {
+                    var emailInput = form.querySelector('#username');
+                    var emailValue = emailInput.value;
+                    if (!emailValue.endsWith('@gmail.com')) {
+                        emailInput.setCustomValidity('Vui lòng nhập email Gmail hợp lệ');
+                        emailInput.classList.add('is-invalid');
+                    } else {
+                        emailInput.setCustomValidity('');
+                    }
+
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        })();
+    </script>
 </body>
 
 </html>

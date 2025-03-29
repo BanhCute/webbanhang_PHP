@@ -1,163 +1,86 @@
 <?php
-session_start();
-require_once 'app/config/config.php';
-
-// Enable error reporting
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-ini_set('log_errors', 1);
-ini_set('error_log', __DIR__ . '/error.log');
 
-header('Content-Type: text/html; charset=UTF-8');
-mb_internal_encoding('UTF-8');
+session_start();
 
-// Định nghĩa các hằng số
-if (!defined('ROOT_URL')) {
-    define('ROOT_URL', '/T6-Sang/webbanhang');
+// Chỉ định nghĩa ROOT_PATH và ROOT_URL nếu chưa được định nghĩa
+if (!defined('ROOT_PATH')) {
+    define('ROOT_PATH', __DIR__);
 }
-define('ROOT_PATH', dirname(__FILE__));
-define('APP_ROOT', ROOT_PATH . '/app');
 
-// Load các file cần thiết
+// Không định nghĩa lại ROOT_URL vì đã có trong config.php
+require_once 'app/config/config.php';
 require_once 'app/config/database.php';
-require_once 'app/models/ProductModel.php';
-require_once 'app/models/CategoryModel.php';
-require_once 'app/models/AccountModel.php';
-require_once 'app/controllers/CategoryController.php';
-require_once 'app/controllers/ProductController.php';
-require_once 'app/controllers/AccountController.php';
-require_once 'app/controllers/AdminController.php';
-require_once 'app/controllers/OrderController.php';  // Thêm dòng này
-
-// Lấy URL và tách thành các phần
-$url = isset($_GET['url']) ? rtrim($_GET['url'], '/') : '';
-$url_parts = explode('/', $url);
-
-// Xác định controller và action
-$controller = isset($url_parts[0]) ? $url_parts[0] : 'Product';  // Mặc định là Product
-$action = isset($url_parts[1]) ? $url_parts[1] : 'list';        // Mặc định là list
-$params = array_slice($url_parts, 2);
 
 // Debug
-error_log("URL: " . $url);
-error_log("Controller: " . $controller);
-error_log("Action: " . $action);
+error_log("Request URL: " . ($_GET['url'] ?? 'No URL'));
 
-// Xử lý trang chủ
-if (empty($url)) {
-    require_once 'app/controllers/ProductController.php';
-    $productController = new ProductController();
-    $productController->list();  // Hiển thị danh sách sản phẩm làm trang chủ
-    exit;
-}
+$url = $_GET['url'] ?? '';
+$url = rtrim($url, '/');
+$url = filter_var($url, FILTER_SANITIZE_URL);
+$url = explode('/', $url);
 
-// Xử lý routing cho admin
-if ($controller === 'admin') {
-    require_once 'app/controllers/AdminController.php';
-    $adminController = new AdminController();
+// API Route Handler
+if (isset($url[0]) && $url[0] === 'api') {
+    try {
+        if (isset($url[1]) && $url[1] === 'product') {
+            require_once 'app/controllers/ProductApiController.php';
+            $controller = new ProductApiController();
 
-    $adminAction = isset($url_parts[1]) ? $url_parts[1] : '';
-    $adminSubAction = isset($url_parts[2]) ? $url_parts[2] : '';
-
-    switch ($adminAction) {
-        case 'order':
-            if (empty($adminSubAction)) {
-                $adminController->order();
+            switch ($_SERVER['REQUEST_METHOD']) {
+                case 'GET':
+                    if (isset($url[2])) {
+                        $controller->show($url[2]);
+                    } else {
+                        $controller->index();
+                    }
+                    break;
+                case 'POST':
+                    $controller->store();
+                    break;
+                case 'PUT':
+                    if (isset($url[2])) {
+                        $controller->update($url[2]);
+                    }
+                    break;
+                case 'DELETE':
+                    if (isset($url[2])) {
+                        $controller->destroy($url[2]);
+                    }
+                    break;
+                default:
+                    http_response_code(405);
+                    echo json_encode(['message' => 'Method not allowed']);
             }
-            break;
-
-        case 'category':
-            if (empty($adminSubAction)) {
-                $adminController->category();
-            } else {
-                switch ($adminSubAction) {
-                    case 'save':
-                        $adminController->saveCategory();
-                        break;
-                    case 'update':
-                        $adminController->updateCategory();
-                        break;
-                    case 'delete':
-                        if (isset($url_parts[3])) {
-                            $adminController->deleteCategory($url_parts[3]);
-                        }
-                        break;
-                }
-            }
-            break;
-
-        case 'product':
-            if (empty($adminSubAction)) {
-                $adminController->product();
-            } else {
-                switch ($adminSubAction) {
-                    case 'add':
-                        $adminController->add();
-                        break;
-                    case 'save':
-                        $adminController->save();
-                        break;
-                    case 'edit':
-                        if (isset($url_parts[3])) {
-                            $adminController->edit($url_parts[3]);
-                        }
-                        break;
-                    case 'update':
-                        $adminController->update();
-                        break;
-                    case 'delete':
-                        if (isset($url_parts[3])) {
-                            $adminController->delete($url_parts[3]);
-                        }
-                        break;
-                }
-            }
-            break;
-
-        case 'user':
-            if (empty($adminSubAction)) {
-                $adminController->user();
-            } else {
-                switch ($adminSubAction) {
-                    case 'save':
-                        $adminController->saveUser();
-                        break;
-                    case 'update':
-                        $adminController->updateUser();
-                        break;
-                    case 'delete':
-                        if (isset($url_parts[3])) {
-                            $adminController->deleteUser($url_parts[3]);
-                        }
-                        break;
-                }
-            }
-            break;
-
-        default:
-            // Nếu không có action cụ thể, chuyển về trang quản lý sản phẩm
-            $adminController->product();
-            break;
-    }
-} else {
-    // Xử lý các controller thông thường
-    $controller_name = ucfirst($controller) . 'Controller';
-    $controller_file = 'app/controllers/' . $controller_name . '.php';
-
-    if (file_exists($controller_file)) {
-        require_once $controller_file;
-        $controller_instance = new $controller_name();
-
-        if (method_exists($controller_instance, $action)) {
-            call_user_func_array([$controller_instance, $action], $params);
-        } else {
-            // Chuyển về trang danh sách sản phẩm nếu không tìm thấy action
-            header('Location: ' . ROOT_URL . '/Product/list');
             exit;
         }
-    } else {
-        // Chuyển về trang danh sách sản phẩm nếu không tìm thấy controller
-        header('Location: ' . ROOT_URL . '/Product/list');
+    } catch (Exception $e) {
+        error_log("API Error: " . $e->getMessage());
+        http_response_code(500);
+        echo json_encode(['error' => $e->getMessage()]);
         exit;
     }
 }
+
+// MVC Route Handler
+
+$controllerName = isset($url[0]) && $url[0] != '' ? ucfirst($url[0]) . 'Controller' : 'ProductController';
+
+$action = isset($url[1]) && $url[1] != '' ? $url[1] : 'index';
+
+if (file_exists('app/controllers/' . $controllerName . '.php')) {
+    require_once 'app/controllers/' . $controllerName . '.php';
+    $controller = new $controllerName();
+    if (method_exists($controller, $action)) {
+        call_user_func_array([$controller, $action], array_slice($url, 2));
+    } else {
+        die('Action không tồn tại');
+    }
+} else {
+    die('Controller không tồn tại');
+}
+
+error_log("URL: " . print_r($url, true));
+error_log("Method: " . $_SERVER['REQUEST_METHOD']);
+error_log("Request Body: " . file_get_contents('php://input'));
