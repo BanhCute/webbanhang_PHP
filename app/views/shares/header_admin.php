@@ -93,6 +93,12 @@
         <div class="container-fluid">
             <ul class="nav">
                 <li class="nav-item">
+                    <a class="nav-link <?= $currentPage === 'dashboard' ? 'active' : '' ?>"
+                        href="<?= ROOT_URL ?>/admin/dashboard">
+                        <i class="fas fa-chart-line me-2"></i>Thống kê
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link <?= $currentPage === 'product' ? 'active' : '' ?>"
                         href="<?= ROOT_URL ?>/admin/product">
                         <i class="fas fa-box me-2"></i>Quản lý sản phẩm
@@ -117,7 +123,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?= ROOT_URL ?>" target="_blank">
+                    <a class="nav-link" href="<?= ROOT_URL ?>/Product/list" target="_blank">
                         <i class="fas fa-home me-2"></i>Xem trang chủ
                     </a>
                 </li>

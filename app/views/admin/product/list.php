@@ -4,137 +4,94 @@ $currentPage = 'product';
 require_once ROOT_PATH . '/app/views/shares/header_admin.php';
 ?>
 
-<div class="container-fluid mt-4">
-    <div class="card">
-        <div class="card-header bg-white d-flex justify-content-between align-items-center py-3">
-            <h5 class="mb-0">Quản lý sản phẩm</h5>
-            <a href="<?= ROOT_URL ?>/admin/product/add" class="btn btn-primary">
-                <i class="fas fa-plus-circle me-2"></i>Thêm sản phẩm
-            </a>
-        </div>
-        <div class="card-body">
-            <!-- Thêm phần hiển thị thông báo -->
-            <?php if (isset($_SESSION['success'])): ?>
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <i class="fas fa-check-circle me-2"></i><?= $_SESSION['success'] ?>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                </div>
-                <?php unset($_SESSION['success']); ?>
-            <?php endif; ?>
+<div class="container mt-4">
+    <h2>Quản lý sản phẩm</h2>
 
-            <?php if (isset($_SESSION['error'])): ?>
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <i class="fas fa-exclamation-circle me-2"></i><?= $_SESSION['error'] ?>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                </div>
-                <?php unset($_SESSION['error']); ?>
-            <?php endif; ?>
-
-            <!-- Form lọc -->
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <form method="GET" action="<?= ROOT_URL ?>/admin/product" class="d-flex gap-2">
-                        <select name="category_id" class="form-select w-auto">
-                            <option value="">Tất cả danh mục</option>
-                            <?php foreach ($categories as $category): ?>
-                                <option value="<?= $category['id'] ?>"
-                                    <?= isset($_GET['category_id']) && $_GET['category_id'] == $category['id'] ? 'selected' : '' ?>>
-                                    <?= htmlspecialchars($category['name']) ?>
-                                </option>
-                            <?php endforeach; ?>
-                        </select>
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-filter me-2"></i>Lọc
-                        </button>
-                        <?php if (isset($_GET['category_id']) && $_GET['category_id']): ?>
-                            <a href="<?= ROOT_URL ?>/admin/product" class="btn btn-secondary">
-                                <i class="fas fa-times me-2"></i>Xóa lọc
-                            </a>
-                        <?php endif; ?>
-                    </form>
-                </div>
-            </div>
-
-            <!-- Bảng sản phẩm -->
-            <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead class="table-light">
-                        <tr>
-                            <th>ID</th>
-                            <th>Ảnh</th>
-                            <th>Tên sản phẩm</th>
-                            <th>Giá</th>
-                            <th>Danh mục</th>
-                            <th>Thao tác</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($products as $product): ?>
-                            <tr>
-                                <td><?= $product['id'] ?></td>
-                                <td>
-                                    <img src="<?= ROOT_URL ?>/public/uploads/products/<?= $product['image'] ?: 'no-image.png' ?>"
-                                        class="rounded" style="width: 80px; height: 80px; object-fit: cover;">
-                                </td>
-                                <td>
-                                    <div class="fw-bold"><?= htmlspecialchars($product['name']) ?></div>
-                                    <small class="text-muted"><?= substr($product['description'], 0, 50) ?>...</small>
-                                </td>
-                                <td class="fw-bold text-primary">
-                                    <?= number_format($product['price'], 0, ',', '.') ?> đ
-                                </td>
-                                <td>
-                                    <span class="badge bg-info"><?= htmlspecialchars($product['category_name']) ?></span>
-                                </td>
-                                <td>
-                                    <a href="<?= ROOT_URL ?>/admin/product/edit/<?= $product['id'] ?>"
-                                        class="btn btn-warning btn-sm me-1">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
-                                    <button onclick="deleteProduct(<?= $product['id'] ?>)"
-                                        class="btn btn-danger btn-sm">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </td>
-                            </tr>
+    <!-- Form lọc sản phẩm -->
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <form action="" method="GET" class="form-inline">
+                <div class="input-group">
+                    <select name="category_id" class="form-control">
+                        <option value="">Tất cả danh mục</option>
+                        <?php foreach ($categories as $category): ?>
+                            <option value="<?= $category['id'] ?>"
+                                <?= (isset($_GET['category_id']) && $_GET['category_id'] == $category['id']) ? 'selected' : '' ?>>
+                                <?= htmlspecialchars($category['name']) ?>
+                            </option>
                         <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- Phân trang -->
-            <?php if ($totalPages > 1): ?>
-                <nav class="mt-4">
-                    <ul class="pagination justify-content-center">
-                        <?php
-                        $queryParams = $_GET;
-                        unset($queryParams['page']);
-                        $queryString = http_build_query($queryParams);
-                        $baseUrl = ROOT_URL . '/admin/product' . ($queryString ? '?' . $queryString . '&' : '?');
-                        ?>
-
-                        <li class="page-item <?= ($page <= 1) ? 'disabled' : '' ?>">
-                            <a class="page-link" href="<?= $baseUrl ?>page=<?= $page - 1 ?>">
-                                <i class="fas fa-chevron-left"></i>
-                            </a>
-                        </li>
-
-                        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-                            <li class="page-item <?= ($page == $i) ? 'active' : '' ?>">
-                                <a class="page-link" href="<?= $baseUrl ?>page=<?= $i ?>"><?= $i ?></a>
-                            </li>
-                        <?php endfor; ?>
-
-                        <li class="page-item <?= ($page >= $totalPages) ? 'disabled' : '' ?>">
-                            <a class="page-link" href="<?= $baseUrl ?>page=<?= $page + 1 ?>">
-                                <i class="fas fa-chevron-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            <?php endif; ?>
+                    </select>
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary">Lọc</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6 text-right">
+            <a href="<?= ROOT_URL ?>/admin/product/add" class="btn btn-success">Thêm sản phẩm mới</a>
         </div>
     </div>
+
+    <?php if (isset($_SESSION['success'])): ?>
+        <div class="alert alert-success">
+            <?= $_SESSION['success']; ?>
+            <?php unset($_SESSION['success']); ?>
+        </div>
+    <?php endif; ?>
+
+    <?php if (isset($_SESSION['error'])): ?>
+        <div class="alert alert-danger">
+            <?= $_SESSION['error']; ?>
+            <?php unset($_SESSION['error']); ?>
+        </div>
+    <?php endif; ?>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Ảnh</th>
+                <th>Tên sản phẩm</th>
+                <th>Giá</th>
+                <th>Danh mục</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php if (!empty($products)): ?>
+                <?php foreach ($products as $product): ?>
+                    <tr>
+                        <td><?= $product['id'] ?></td>
+                        <td>
+                            <?php
+                            $imagePath = $product['image']
+                                ? ROOT_URL . '/public/uploads/products/' . $product['image']
+                                : ROOT_URL . '/public/images/no-image.png';
+                            ?>
+                            <img src="<?= $imagePath ?>"
+                                class="rounded"
+                                alt="<?= htmlspecialchars($product['name']) ?>"
+                                style="width: 80px; height: 80px; object-fit: cover;">
+                        </td>
+                        <td><?= $product['name'] ?></td>
+                        <td><?= number_format($product['price']) ?> đ</td>
+                        <td><?= $product['category_name'] ?></td>
+                        <td>
+                            <a href="<?= ROOT_URL ?>/admin/product/edit/<?= $product['id'] ?>"
+                                class="btn btn-warning btn-sm">Sửa</a>
+                            <a href="<?= ROOT_URL ?>/admin/product/delete/<?= $product['id'] ?>"
+                                class="btn btn-danger btn-sm"
+                                onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')">Xóa</a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <tr>
+                    <td colspan="6" class="text-center">Không có sản phẩm nào</td>
+                </tr>
+            <?php endif; ?>
+        </tbody>
+    </table>
 </div>
 
 <script>

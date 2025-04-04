@@ -13,22 +13,20 @@ class AdminController
             session_start();
         }
 
-        // Kiểm tra quyền admin ngay khi khởi tạo controller
+        // Kiểm tra quyền admin
         $this->checkAdminAccess();
 
         // Khởi tạo kết nối database
         global $conn;
-        if (!isset($conn)) {
-            require_once ROOT_PATH . '/app/config/database.php';
-        }
         $this->db = $conn;
 
-        // Khởi tạo ProductModel
+        // Khởi tạo models
         require_once ROOT_PATH . '/app/models/ProductModel.php';
+        require_once ROOT_PATH . '/app/models/CategoryModel.php';
         $this->productModel = new ProductModel($this->db);
+        $this->categoryModel = new CategoryModel($this->db);
     }
 
-    // Thêm phương thức kiểm tra quyền admin
     private function checkAdminAccess()
     {
         if (!isset($_SESSION['user_id']) || !isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
@@ -38,115 +36,82 @@ class AdminController
         }
     }
 
+    // Trang chủ admin
+    public function index()
+    {
+        try {
+            // Lấy thống kê cơ bản
+            $totalProducts = $this->db->query("SELECT COUNT(*) FROM products")->fetchColumn();
+            $totalCategories = $this->db->query("SELECT COUNT(*) FROM categories")->fetchColumn();
+            $totalAccounts = $this->db->query("SELECT COUNT(*) FROM account")->fetchColumn();
+            $totalOrders = $this->db->query("SELECT COUNT(*) FROM orders")->fetchColumn();
+
+            require_once ROOT_PATH . '/app/views/admin/category/list.php';
+        } catch (Exception $e) {
+            $_SESSION['error'] = $e->getMessage();
+            header('Location: ' . ROOT_URL . '/admin');
+            exit;
+        }
+    }
+
+    // Quản lý sản phẩm
     public function product()
     {
         try {
-            // Số sản phẩm trên mỗi trang
-            $limit = 4;
-            $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-            $offset = ($page - 1) * $limit;
+            // Lấy danh sách danh mục cho form lọc
+            $stmtCategories = $this->db->prepare("SELECT * FROM categories ORDER BY name");
+            $stmtCategories->execute();
+            $categories = $stmtCategories->fetchAll(PDO::FETCH_ASSOC);
 
-            // Lấy category_id từ query string nếu có
-            $category_id = isset($_GET['category_id']) ? (int)$_GET['category_id'] : null;
-
-            // Lấy danh sách categories cho form lọc
-            $stmt = $this->db->query("SELECT * FROM categories ORDER BY name");
-            $categories = $stmt->fetchAll();
-
-            // Lấy tổng số sản phẩm (có filter theo category nếu có)
-            if ($category_id) {
-                $stmt = $this->db->prepare("SELECT COUNT(*) FROM products WHERE category_id = ?");
-                $stmt->execute([$category_id]);
-            } else {
-                $stmt = $this->db->query("SELECT COUNT(*) FROM products");
-            }
-            $totalProducts = $stmt->fetchColumn();
-            $totalPages = ceil($totalProducts / $limit);
-
-            // Lấy danh sách sản phẩm có phân trang và lọc theo category
+            // Xây dựng câu query với điều kiện lọc
             $sql = "SELECT p.*, c.name as category_name 
                     FROM products p 
                     LEFT JOIN categories c ON p.category_id = c.id";
 
-            if ($category_id) {
+            $params = [];
+
+            // Thêm điều kiện lọc theo danh mục nếu có
+            if (!empty($_GET['category_id'])) {
                 $sql .= " WHERE p.category_id = :category_id";
+                $params[':category_id'] = $_GET['category_id'];
             }
 
-            $sql .= " ORDER BY p.id DESC LIMIT :limit OFFSET :offset";
+            $sql .= " ORDER BY p.id DESC";
 
+            // Thực thi query
             $stmt = $this->db->prepare($sql);
+            $stmt->execute($params);
+            $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            if ($category_id) {
-                $stmt->bindValue(':category_id', $category_id, PDO::PARAM_INT);
-            }
-
-            $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
-            $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
-            $stmt->execute();
-
-            $products = $stmt->fetchAll();
-
-            // Load view
+            // Load view với dữ liệu
             require_once ROOT_PATH . '/app/views/admin/product/list.php';
         } catch (Exception $e) {
-            $_SESSION['error'] = "Có lỗi xảy ra: " . $e->getMessage();
-            header('Location: ' . ROOT_URL);
+            error_log("Lỗi trong AdminController::product: " . $e->getMessage());
+            $_SESSION['error'] = $e->getMessage();
+            header('Location: ' . ROOT_URL . '/admin');
             exit;
         }
     }
 
+    // Form thêm sản phẩm
     public function add()
     {
         try {
-            // Lấy danh sách categories cho form
-            $stmt = $this->db->query("SELECT * FROM categories ORDER BY name");
-            $categories = $stmt->fetchAll();
+            // Lấy danh sách danh mục cho form thêm
+            $sql = "SELECT * FROM categories ORDER BY name";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute();
+            $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             require_once ROOT_PATH . '/app/views/admin/product/add.php';
         } catch (Exception $e) {
-            $_SESSION['error'] = "Có lỗi xảy ra: " . $e->getMessage();
+            $_SESSION['error'] = $e->getMessage();
             header('Location: ' . ROOT_URL . '/admin/product');
             exit;
         }
     }
 
-    public function edit($id)
-    {
-        try {
-            // Debug
-            error_log("Edit method called with ID: " . $id);
-
-            // Lấy thông tin sản phẩm
-            $stmt = $this->db->prepare("SELECT p.*, c.name as category_name 
-                                      FROM products p 
-                                      LEFT JOIN categories c ON p.category_id = c.id 
-                                      WHERE p.id = ?");
-            $stmt->execute([$id]);
-            $product = $stmt->fetch();
-
-            if (!$product) {
-                $_SESSION['error'] = "Không tìm thấy sản phẩm";
-                header('Location: ' . ROOT_URL . '/admin/product');
-                exit;
-            }
-
-            // Lấy danh sách categories
-            $stmt = $this->db->query("SELECT * FROM categories ORDER BY name");
-            $categories = $stmt->fetchAll();
-
-            // Debug
-            error_log("Product data: " . print_r($product, true));
-            error_log("Categories: " . print_r($categories, true));
-
-            require_once ROOT_PATH . '/app/views/admin/product/edit.php';
-        } catch (Exception $e) {
-            error_log("Error in edit method: " . $e->getMessage());
-            $_SESSION['error'] = "Có lỗi xảy ra: " . $e->getMessage();
-            header('Location: ' . ROOT_URL . '/admin/product');
-            exit;
-        }
-    }
-
+    // Xử lý thêm sản phẩm
     public function save()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -155,21 +120,60 @@ class AdminController
                 $description = $_POST['description'];
                 $price = $_POST['price'];
                 $category_id = $_POST['category_id'];
-                $image = isset($_FILES['image']) ? $_FILES['image'] : null;
 
-                if ($this->productModel->addProduct($name, $description, $price, $category_id, $image)) {
+                // Xử lý upload ảnh
+                $image = '';
+                if (isset($_FILES['image']) && $_FILES['image']['error'] === 0) {
+                    $uploadDir = ROOT_PATH . '/public/uploads/products/'; // Thêm thư mục products
+
+                    // Tạo thư mục nếu chưa tồn tại
+                    if (!file_exists($uploadDir)) {
+                        mkdir($uploadDir, 0777, true);
+                    }
+
+                    $fileName = uniqid() . '_' . $_FILES['image']['name'];
+                    if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadDir . $fileName)) {
+                        $image = $fileName;
+                    }
+                }
+
+                $sql = "INSERT INTO products (name, description, price, category_id, image) 
+                        VALUES (:name, :description, :price, :category_id, :image)";
+                $stmt = $this->db->prepare($sql);
+                $stmt->bindParam(':name', $name);
+                $stmt->bindParam(':description', $description);
+                $stmt->bindParam(':price', $price);
+                $stmt->bindParam(':category_id', $category_id);
+                $stmt->bindParam(':image', $image);
+
+                if ($stmt->execute()) {
                     $_SESSION['success'] = "Thêm sản phẩm thành công";
                 } else {
-                    throw new Exception("Không thể thêm sản phẩm");
+                    $_SESSION['error'] = "Thêm sản phẩm thất bại";
                 }
             } catch (Exception $e) {
-                $_SESSION['error'] = "Có lỗi xảy ra: " . $e->getMessage();
+                $_SESSION['error'] = $e->getMessage();
             }
         }
         header('Location: ' . ROOT_URL . '/admin/product');
         exit;
     }
 
+    // Form sửa sản phẩm
+    public function edit($id)
+    {
+        try {
+            $product = $this->productModel->getProductById($id);
+            $categories = $this->categoryModel->getAllCategories();
+            require_once ROOT_PATH . '/app/views/admin/product/edit.php';
+        } catch (Exception $e) {
+            $_SESSION['error'] = $e->getMessage();
+            header('Location: ' . ROOT_URL . '/admin/product');
+            exit;
+        }
+    }
+
+    // Xử lý sửa sản phẩm
     public function update()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -181,43 +185,32 @@ class AdminController
                 $category_id = $_POST['category_id'];
                 $image = isset($_FILES['image']) ? $_FILES['image'] : null;
 
-                if ($this->productModel->updateProduct($id, $name, $description, $price, $category_id, $image)) {
+                $result = $this->productModel->updateProduct($id, $name, $description, $price, $category_id, $image);
+
+                if ($result) {
                     $_SESSION['success'] = "Cập nhật sản phẩm thành công";
                 } else {
-                    throw new Exception("Không thể cập nhật sản phẩm");
+                    $_SESSION['error'] = "Cập nhật sản phẩm thất bại";
                 }
             } catch (Exception $e) {
-                $_SESSION['error'] = "Có lỗi xảy ra: " . $e->getMessage();
+                $_SESSION['error'] = $e->getMessage();
             }
         }
         header('Location: ' . ROOT_URL . '/admin/product');
         exit;
     }
 
+    // Xóa sản phẩm
     public function delete($id)
     {
         try {
-            if (!$id) {
-                throw new Exception("ID sản phẩm không hợp lệ");
-            }
-
-            // Lấy thông tin sản phẩm để xóa ảnh
-            $product = $this->productModel->getProductById($id);
-
             if ($this->productModel->deleteProduct($id)) {
-                // Xóa file ảnh nếu có
-                if ($product && !empty($product['image'])) {
-                    $imagePath = ROOT_PATH . '/public/uploads/products/' . $product['image'];
-                    if (file_exists($imagePath)) {
-                        unlink($imagePath);
-                    }
-                }
                 $_SESSION['success'] = "Xóa sản phẩm thành công";
             } else {
-                throw new Exception("Không thể xóa sản phẩm");
+                $_SESSION['error'] = "Xóa sản phẩm thất bại";
             }
         } catch (Exception $e) {
-            $_SESSION['error'] = "Có lỗi xảy ra: " . $e->getMessage();
+            $_SESSION['error'] = $e->getMessage();
         }
         header('Location: ' . ROOT_URL . '/admin/product');
         exit;
@@ -226,40 +219,26 @@ class AdminController
     public function category()
     {
         try {
-            // Kiểm tra đăng nhập và quyền admin
-            if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
-                $_SESSION['error'] = "Bạn không có quyền truy cập";
-                header('Location: ' . ROOT_URL . '/Account/login');
-                exit;
-            }
+            // Lấy danh sách categories kèm số lượng sản phẩm
+            $sql = "SELECT c.*, 
+                    COUNT(p.id) as product_count 
+                    FROM categories c 
+                    LEFT JOIN products p ON c.id = p.category_id 
+                    GROUP BY c.id, c.name 
+                    ORDER BY c.name";
+            $categories = $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
             // Phân trang
-            $limit = 4;
             $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-            $offset = ($page - 1) * $limit;
-
-            // Lấy tổng số danh mục
-            $stmt = $this->db->query("SELECT COUNT(*) FROM categories");
-            $totalCategories = $stmt->fetchColumn();
-            $totalPages = ceil($totalCategories / $limit);
-
-            // Lấy danh sách danh mục có phân trang
-            $sql = "SELECT c.*, 
-                    (SELECT COUNT(*) FROM products WHERE category_id = c.id) as product_count 
-                FROM categories c 
-                ORDER BY c.id DESC
-                    LIMIT :limit OFFSET :offset";
-
-            $stmt = $this->db->prepare($sql);
-            $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
-            $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
-            $stmt->execute();
-            $categories = $stmt->fetchAll();
+            $limit = 10;
+            $total = count($categories);
+            $totalPages = ceil($total / $limit);
 
             require_once ROOT_PATH . '/app/views/admin/category/list.php';
         } catch (Exception $e) {
-            $_SESSION['error'] = "Có lỗi xảy ra: " . $e->getMessage();
-            header('Location: ' . ROOT_URL . '/admin/category');
+            error_log("Lỗi trong AdminController::category: " . $e->getMessage());
+            $_SESSION['error'] = $e->getMessage();
+            header('Location: ' . ROOT_URL . '/admin');
             exit;
         }
     }
@@ -269,13 +248,9 @@ class AdminController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             try {
                 $name = trim($_POST['name']);
-
                 if (empty($name)) {
                     throw new Exception("Tên danh mục không được để trống");
                 }
-
-                // Debug
-                error_log("Saving category: " . $name);
 
                 $stmt = $this->db->prepare("INSERT INTO categories (name) VALUES (?)");
                 if ($stmt->execute([$name])) {
@@ -284,12 +259,11 @@ class AdminController
                     throw new Exception("Không thể thêm danh mục");
                 }
             } catch (Exception $e) {
-                error_log("Error saving category: " . $e->getMessage());
                 $_SESSION['error'] = $e->getMessage();
             }
+            header('Location: ' . ROOT_URL . '/admin/category');
+            exit;
         }
-        header('Location: ' . ROOT_URL . '/admin/category');
-        exit;
     }
 
     public function updateCategory()
@@ -298,10 +272,6 @@ class AdminController
             try {
                 $id = $_POST['id'];
                 $name = trim($_POST['name']);
-
-                // Debug
-                error_log("Updating category ID: " . $id . " with name: " . $name);
-
                 if (empty($name)) {
                     throw new Exception("Tên danh mục không được để trống");
                 }
@@ -313,22 +283,23 @@ class AdminController
                     throw new Exception("Không thể cập nhật danh mục");
                 }
             } catch (Exception $e) {
-                error_log("Error updating category: " . $e->getMessage());
                 $_SESSION['error'] = $e->getMessage();
             }
+            header('Location: ' . ROOT_URL . '/admin/category');
+            exit;
         }
-        header('Location: ' . ROOT_URL . '/admin/category');
-        exit;
     }
 
     public function deleteCategory($id)
     {
         try {
-            // Debug
-            error_log("Deleting category ID: " . $id);
+            // Kiểm tra xem có sản phẩm nào trong danh mục không
+            $stmt = $this->db->prepare("SELECT COUNT(*) FROM products WHERE category_id = ?");
+            $stmt->execute([$id]);
+            $count = $stmt->fetchColumn();
 
-            if (!$id) {
-                throw new Exception("ID danh mục không hợp lệ");
+            if ($count > 0) {
+                throw new Exception("Không thể xóa danh mục này vì có sản phẩm đang sử dụng");
             }
 
             $stmt = $this->db->prepare("DELETE FROM categories WHERE id = ?");
@@ -338,7 +309,6 @@ class AdminController
                 throw new Exception("Không thể xóa danh mục");
             }
         } catch (Exception $e) {
-            error_log("Error deleting category: " . $e->getMessage());
             $_SESSION['error'] = $e->getMessage();
         }
         header('Location: ' . ROOT_URL . '/admin/category');
@@ -348,38 +318,17 @@ class AdminController
     public function user()
     {
         try {
-            // Kiểm tra đăng nhập và quyền admin
-            if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
-                $_SESSION['error'] = "Bạn không có quyền truy cập";
-                header('Location: ' . ROOT_URL . '/Account/login');
-                exit;
-            }
+            // Sửa lại để lấy từ bảng account
+            $users = $this->db->query("SELECT * FROM account ORDER BY id DESC")->fetchAll();
 
-            // Phân trang
-            $limit = 4;
-            $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-            $offset = ($page - 1) * $limit;
-
-            // Lấy tổng số người dùng
-            $stmt = $this->db->query("SELECT COUNT(*) FROM account");
-            $totalUsers = $stmt->fetchColumn();
-            $totalPages = ceil($totalUsers / $limit);
-
-            // Lấy danh sách người dùng có phân trang
-            $sql = "SELECT * FROM account 
-                ORDER BY created_at DESC
-                    LIMIT :limit OFFSET :offset";
-
-            $stmt = $this->db->prepare($sql);
-            $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
-            $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
-            $stmt->execute();
-            $users = $stmt->fetchAll();
+            // Thêm biến page và totalPages cho phân trang
+            $page = 1;
+            $totalPages = 1;
 
             require_once ROOT_PATH . '/app/views/admin/user/list.php';
         } catch (Exception $e) {
-            $_SESSION['error'] = "Có lỗi xảy ra: " . $e->getMessage();
-            header('Location: ' . ROOT_URL . '/admin/user');
+            $_SESSION['error'] = $e->getMessage();
+            header('Location: ' . ROOT_URL . '/admin');
             exit;
         }
     }
@@ -488,57 +437,26 @@ class AdminController
     public function order()
     {
         try {
-            // Kiểm tra quyền admin
-            $this->checkAdminAccess();
-
-            // Xử lý phân trang
+            // Lấy danh sách đơn hàng với phân trang
             $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-            $limit = 5;
+            $limit = 10;
             $offset = ($page - 1) * $limit;
 
-            // Xây dựng query
-            $sql = "SELECT * FROM orders WHERE 1=1";
-            $params = [];
+            $sql = "SELECT o.*, a.username 
+                    FROM orders o 
+                    LEFT JOIN account a ON o.user_id = a.id 
+                    ORDER BY o.created_at DESC 
+                    LIMIT :limit OFFSET :offset";
 
-            // Thêm điều kiện lọc
-            if (isset($_GET['status']) && $_GET['status'] !== '') {
-                $sql .= " AND status = :status";
-                $params[':status'] = $_GET['status'];
-            }
-
-            if (!empty($_GET['from_date'])) {
-                $sql .= " AND DATE(created_at) >= :from_date";
-                $params[':from_date'] = $_GET['from_date'];
-            }
-
-            if (!empty($_GET['to_date'])) {
-                $sql .= " AND DATE(created_at) <= :to_date";
-                $params[':to_date'] = $_GET['to_date'];
-            }
-
-            // Đếm tổng số đơn hàng
-            $countSql = "SELECT COUNT(*) FROM ($sql) as count_table";
-            $stmt = $this->db->prepare($countSql);
-            foreach ($params as $key => $value) {
-                $stmt->bindValue($key, $value);
-            }
-            $stmt->execute();
-            $totalOrders = $stmt->fetchColumn();
-            $totalPages = ceil($totalOrders / $limit);
-
-            // Thêm LIMIT và ORDER BY
-            $sql .= " ORDER BY created_at DESC LIMIT :limit OFFSET :offset";
             $stmt = $this->db->prepare($sql);
-            foreach ($params as $key => $value) {
-                $stmt->bindValue($key, $value);
-            }
             $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
             $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
             $stmt->execute();
-            $orders = $stmt->fetchAll();
+            $recentOrders = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             require_once ROOT_PATH . '/app/views/admin/order/list.php';
         } catch (Exception $e) {
+            error_log("Lỗi trong AdminController::order: " . $e->getMessage());
             $_SESSION['error'] = $e->getMessage();
             header('Location: ' . ROOT_URL . '/admin');
             exit;
@@ -601,6 +519,51 @@ class AdminController
                 'success' => false,
                 'message' => $e->getMessage()
             ]);
+        }
+    }
+
+    // Thêm method mới cho dashboard
+    public function dashboard()
+    {
+        try {
+            // Thống kê doanh thu theo tháng
+            $sql = "SELECT 
+                    MONTH(o.created_at) as month,
+                    COUNT(o.id) as total_orders,
+                    SUM(o.total_amount) as revenue
+                    FROM orders o 
+                    WHERE YEAR(o.created_at) = YEAR(CURRENT_DATE)
+                    GROUP BY MONTH(o.created_at)
+                    ORDER BY month";
+            $monthlyStats = $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+
+            // Thống kê tổng quan
+            $sql = "SELECT 
+                    COUNT(*) as total_orders,
+                    SUM(total_amount) as total_revenue,
+                    AVG(total_amount) as avg_order_value
+                    FROM orders";
+            $overview = $this->db->query($sql)->fetch(PDO::FETCH_ASSOC);
+
+            // Thống kê theo danh mục
+            $sql = "SELECT 
+                    c.name as category_name,
+                    COUNT(DISTINCT o.id) as total_orders,
+                    SUM(od.quantity * od.price) as revenue
+                    FROM categories c
+                    LEFT JOIN products p ON c.id = p.category_id
+                    LEFT JOIN order_details od ON p.id = od.product_id
+                    LEFT JOIN orders o ON od.order_id = o.id
+                    GROUP BY c.id, c.name";
+            $categoryStats = $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+
+            // Load view dashboard thay vì category
+            require_once ROOT_PATH . '/app/views/admin/dashboard/index.php';
+        } catch (Exception $e) {
+            error_log("Lỗi trong AdminController::dashboard: " . $e->getMessage());
+            $_SESSION['error'] = $e->getMessage();
+            header('Location: ' . ROOT_URL . '/admin');
+            exit;
         }
     }
 }

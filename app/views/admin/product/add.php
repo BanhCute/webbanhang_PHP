@@ -1,88 +1,79 @@
 <?php
-$pageTitle = 'Thêm sản phẩm mới';
-$currentPage = 'admin-product';
+$pageTitle = "Thêm sản phẩm mới";
+$currentPage = 'product';
 require_once ROOT_PATH . '/app/views/shares/header_admin.php';
 ?>
 
-<div class="container mt-4">
+<div class="container-fluid">
     <div class="card">
-        <div class="card-header bg-white d-flex justify-content-between align-items-center py-3">
-            <h5 class="mb-0"><i class="fas fa-plus-circle text-primary me-2"></i>Thêm sản phẩm mới</h5>
-            <a href="<?= ROOT_URL ?>/admin/product" class="btn btn-secondary">
-                <i class="fas fa-arrow-left me-2"></i>Quay lại
-            </a>
+        <div class="card-header">
+            <h5 class="mb-0">Thêm sản phẩm mới</h5>
         </div>
         <div class="card-body">
-            <form method="POST" action="<?= ROOT_URL ?>/admin/product/save" enctype="multipart/form-data">
-                <div class="row">
-                    <div class="col-md-8">
-                        <div class="mb-3">
-                            <label class="form-label">Tên sản phẩm</label>
-                            <input type="text" class="form-control" name="name" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Mô tả</label>
-                            <textarea class="form-control" name="description" rows="3"></textarea>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Giá</label>
-                                    <input type="number" class="form-control" name="price" required>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Danh mục</label>
-                                    <select class="form-select" name="category_id" required>
-                                        <option value="">Chọn danh mục</option>
-                                        <?php foreach ($categories as $category): ?>
-                                            <option value="<?= $category['id'] ?>">
-                                                <?= htmlspecialchars($category['name']) ?>
-                                            </option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
+            <?php if (isset($_SESSION['error'])): ?>
+                <div class="alert alert-danger">
+                    <?= $_SESSION['error']; ?>
+                    <?php unset($_SESSION['error']); ?>
+                </div>
+            <?php endif; ?>
+
+            <form action="<?= ROOT_URL ?>/admin/product/save" method="POST" enctype="multipart/form-data">
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">Tên sản phẩm</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="name" class="form-control" required>
                     </div>
-                    <div class="col-md-4">
-                        <div class="mb-3">
-                            <label class="form-label">Ảnh sản phẩm</label>
-                            <div class="card">
-                                <div class="card-body text-center">
-                                    <img id="preview" src="<?= ROOT_URL ?>/public/images/no-image.png"
-                                        class="img-fluid mb-2"
-                                        style="max-height: 200px; object-fit: contain;">
-                                    <input type="file" class="form-control" name="image"
-                                        accept="image/*" onchange="previewImage(this)">
-                                    <small class="text-muted">Chọn ảnh để xem trước</small>
-                                </div>
-                            </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">Mô tả</label>
+                    <div class="col-sm-10">
+                        <textarea name="description" class="form-control" rows="3" required></textarea>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">Giá</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <input type="number" name="price" class="form-control" required>
+                            <span class="input-group-text">VNĐ</span>
                         </div>
                     </div>
                 </div>
-                <div class="text-end">
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-save me-2"></i>Lưu sản phẩm
-                    </button>
+
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">Danh mục</label>
+                    <div class="col-sm-10">
+                        <select name="category_id" class="form-control" required>
+                            <option value="">Chọn danh mục</option>
+                            <?php foreach ($categories as $category): ?>
+                                <option value="<?= $category['id'] ?>"><?= htmlspecialchars($category['name']) ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">Hình ảnh</label>
+                    <div class="col-sm-10">
+                        <input type="file" name="image" class="form-control" accept="image/*">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-10 offset-sm-2">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save me-1"></i> Thêm sản phẩm
+                        </button>
+                        <a href="<?= ROOT_URL ?>/admin/product" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left me-1"></i> Quay lại
+                        </a>
+                    </div>
                 </div>
             </form>
         </div>
     </div>
 </div>
-
-<script>
-    function previewImage(input) {
-        const preview = document.getElementById('preview');
-        if (input.files && input.files[0]) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                preview.src = e.target.result;
-            }
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-</script>
 
 <?php require_once ROOT_PATH . '/app/views/shares/footer_admin.php'; ?>

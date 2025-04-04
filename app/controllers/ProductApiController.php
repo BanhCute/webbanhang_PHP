@@ -1,4 +1,6 @@
 <?php
+require_once 'app/middleware/AuthMiddleware.php';
+
 class ProductApiController
 {
     private $productModel;
@@ -79,7 +81,12 @@ class ProductApiController
     public function store()
     {
         try {
+            // Kiểm tra quyền admin
+            AuthMiddleware::requireAdmin();
+
             header('Content-Type: application/json');
+
+            // Nhận dữ liệu JSON
             $data = json_decode(file_get_contents("php://input"), true);
 
             // Debug
@@ -102,11 +109,18 @@ class ProductApiController
                 return;
             }
 
+            // Xử lý ảnh nếu có
+            $image_name = null;
+            if (!empty($data['image'])) {
+                $image_name = $data['image'];
+            }
+
             $result = $this->productModel->addProduct(
                 $data['name'],
                 $data['description'],
                 $data['price'],
-                $data['category_id']
+                $data['category_id'],
+                $image_name
             );
 
             if ($result === true) {
@@ -137,6 +151,9 @@ class ProductApiController
     public function update($id)
     {
         try {
+            // Kiểm tra quyền admin
+            AuthMiddleware::requireAdmin();
+
             header('Content-Type: application/json');
             $data = json_decode(file_get_contents("php://input"), true);
 
@@ -206,6 +223,9 @@ class ProductApiController
     public function destroy($id)
     {
         try {
+            // Kiểm tra quyền admin
+            AuthMiddleware::requireAdmin();
+
             header('Content-Type: application/json');
 
             // Kiểm tra sản phẩm tồn tại

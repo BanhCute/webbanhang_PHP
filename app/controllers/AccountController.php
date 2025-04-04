@@ -84,7 +84,7 @@ class AccountController
     {
         // Nếu đã đăng nhập thì chuyển về trang chủ
         if (isset($_SESSION['user_id'])) {
-            header('Location: ' . ROOT_URL);
+            header('Location: ' . ROOT_URL . '/Product/list');
             exit;
         }
 

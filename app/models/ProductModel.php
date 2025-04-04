@@ -87,7 +87,7 @@ class ProductModel
         }
     }
 
-    public function addProduct($name, $description, $price, $category_id)
+    public function addProduct($name, $description, $price, $category_id, $image = null)
     {
         try {
             // Validate
@@ -105,24 +105,25 @@ class ProductModel
                 return $errors;
             }
 
+            // Xử lý ảnh nếu có
+            $image_name = '';
+            if (!empty($image)) {
+                $image_name = $image;
+            }
+
             // Thêm sản phẩm
             $query = "INSERT INTO " . $this->table_name . " 
-                     (name, description, price, category_id) 
-                     VALUES (:name, :description, :price, :category_id)";
+                     (name, description, price, category_id, image) 
+                     VALUES (:name, :description, :price, :category_id, :image)";
 
             $stmt = $this->conn->prepare($query);
-
-            // Làm sạch dữ liệu
-            $name = htmlspecialchars(strip_tags($name));
-            $description = htmlspecialchars(strip_tags($description));
-            $price = htmlspecialchars(strip_tags($price));
-            $category_id = htmlspecialchars(strip_tags($category_id));
 
             // Bind các giá trị
             $stmt->bindParam(':name', $name);
             $stmt->bindParam(':description', $description);
             $stmt->bindParam(':price', $price);
             $stmt->bindParam(':category_id', $category_id);
+            $stmt->bindParam(':image', $image_name);
 
             if ($stmt->execute()) {
                 return true;

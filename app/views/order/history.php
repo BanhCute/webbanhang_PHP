@@ -27,6 +27,7 @@
 
                                 <th class="text-end">Tổng tiền</th>
                                 <th class="text-center">Trạng thái</th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -39,7 +40,7 @@
                                         <i class="far fa-calendar-alt text-muted me-1"></i>
                                         <?= date('d/m/Y', strtotime($order['created_at'])) ?>
                                     </td>
-                                    
+
                                     <td class="text-center">
                                         <span class="badge bg-secondary">
                                             <i class="fas fa-box me-1"></i>
@@ -49,39 +50,13 @@
                                     <td class="text-end text-danger fw-bold">
                                         <?= number_format($order['total_amount']) ?>đ
                                     </td>
-                                    <td class="text-center">
-                                        <?php
-                                        $statusClass = '';
-                                        $statusIcon = '';
-                                        $statusText = '';
-                                        switch ($order['status']) {
-                                            case 0:
-                                                $statusClass = 'bg-warning';
-                                                $statusIcon = 'fa-clock';
-                                                $statusText = 'Chờ xác nhận';
-                                                break;
-                                            case 1:
-                                                $statusClass = 'bg-info';
-                                                $statusIcon = 'fa-spinner fa-spin';
-                                                $statusText = 'Đang xử lý';
-                                                break;
-                                            case 2:
-                                                $statusClass = 'bg-success';
-                                                $statusIcon = 'fa-check-circle';
-                                                $statusText = 'Đã giao';
-                                                break;
-                                            case 3:
-                                                $statusClass = 'bg-danger';
-                                                $statusIcon = 'fa-times-circle';
-                                                $statusText = 'Đã hủy';
-                                                break;
-                                        }
-                                        ?>
-                                        <span class="badge <?= $statusClass ?>">
-                                            <i class="fas <?= $statusIcon ?> me-1"></i>
-                                            <?= $statusText ?>
+                                    <td>
+                                        <span class="badge bg-success">
+                                            <i class="fas fa-check-circle me-1"></i>
+                                            Hoàn tất
                                         </span>
                                     </td>
+
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>

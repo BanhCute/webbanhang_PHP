@@ -17,3 +17,4 @@ try {
     error_log("Lỗi kết nối database: " . $e->getMessage());
     die("Kết nối thất bại: " . $e->getMessage());
 }
+

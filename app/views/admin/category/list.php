@@ -63,30 +63,25 @@ require_once ROOT_PATH . '/app/views/shares/header_admin.php';
         </div>
 
         <?php if ($totalPages > 1): ?>
-            <nav class="mt-4">
+            <nav aria-label="Page navigation" class="mt-4">
                 <ul class="pagination justify-content-center">
-                    <!-- Nút Previous -->
-                    <li class="page-item <?= ($page <= 1) ? 'disabled' : '' ?>">
-                        <a class="page-link" href="<?= ROOT_URL ?>/admin/category?page=<?= max($page - 1, 1) ?>">
-                            <i class="fas fa-chevron-left"></i>
-                        </a>
-                    </li>
+                    <?php if ($page > 1): ?>
+                        <li class="page-item">
+                            <a class="page-link" href="?page=<?= ($page - 1) ?>">Trước</a>
+                        </li>
+                    <?php endif; ?>
 
-                    <!-- Các trang -->
                     <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-                        <li class="page-item <?= ($page == $i) ? 'active' : '' ?>">
-                            <a class="page-link" href="<?= ROOT_URL ?>/admin/category?page=<?= $i ?>">
-                                <?= $i ?>
-                            </a>
+                        <li class="page-item <?= ($i == $page) ? 'active' : '' ?>">
+                            <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
                         </li>
                     <?php endfor; ?>
 
-                    <!-- Nút Next -->
-                    <li class="page-item <?= ($page >= $totalPages) ? 'disabled' : '' ?>">
-                        <a class="page-link" href="<?= ROOT_URL ?>/admin/category?page=<?= min($page + 1, $totalPages) ?>">
-                            <i class="fas fa-chevron-right"></i>
-                        </a>
-                    </li>
+                    <?php if ($page < $totalPages): ?>
+                        <li class="page-item">
+                            <a class="page-link" href="?page=<?= ($page + 1) ?>">Sau</a>
+                        </li>
+                    <?php endif; ?>
                 </ul>
             </nav>
         <?php endif; ?>
